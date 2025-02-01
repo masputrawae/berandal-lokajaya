@@ -18,17 +18,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Add swipe functionality for screens below 992px
   if (window.innerWidth < 992) {
-    let touchStartX = 50;
-    let touchEndX = 50;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const threshold = 50; // Set minimal geseran 50px agar tidak terlalu sensitif
 
     const handleGesture = () => {
-      if (touchEndX < touchStartX) {
-        document.querySelector(".layout__left").classList.remove("active");
-        document.querySelector(".layout__right").classList.add("active");
-      }
-      if (touchEndX > touchStartX) {
-        document.querySelector(".layout__left").classList.add("active");
-        document.querySelector(".layout__right").classList.remove("active");
+      let diff = touchEndX - touchStartX;
+
+      if (Math.abs(diff) > threshold) {
+        if (diff < 0) {
+          // Geser ke kiri (tutup left, buka right)
+          document.querySelector(".layout__left").classList.remove("active");
+          document.querySelector(".layout__right").classList.add("active");
+        } else {
+          // Geser ke kanan (buka left, tutup right)
+          document.querySelector(".layout__left").classList.add("active");
+          document.querySelector(".layout__right").classList.remove("active");
+        }
       }
     };
 
