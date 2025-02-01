@@ -21,8 +21,8 @@
             color: var(--cl-btn-hover);
             border-color: var(--cl-btn-hover);
         }
-        
-        &:focus {
+
+        &:focus-visible {
             transform: scale(1.1);
             box-shadow: var(--cl-shadow-focus);
             text-shadow: var(--cl-shadow-text);

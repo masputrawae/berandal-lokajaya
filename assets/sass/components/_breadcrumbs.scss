@@ -4,7 +4,8 @@
 
 .breadcrumb {
     &__list {
-        @include m.flex-justify(center, center);
+        align-items: center;
+        justify-content: center;
         list-style: none;
         padding: v.$size-0;
         margin: v.$size-0;

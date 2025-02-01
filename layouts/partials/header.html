@@ -1,5 +1,5 @@
 <header class="header">
-  <div class="header__top">
+  <div class="header__top flex-justify">
     <button class="btn btn--icon btn--open" id="leftOpen">
       <i class="bi-layout-text-window-reverse"></i>
     </button>
@@ -13,7 +13,7 @@
 
   <div class="header__bottom">
     <nav class="breadcrumb">
-      <ul class="breadcrumb__list">
+      <ul class="breadcrumb__list flex-justify">
         {{ range .Ancestors.Reverse }}
           <li class="breadcrumb__item">
             <a class="breadcrumb__link" href="{{ .RelPermalink }}">{{ .Title }}</a>

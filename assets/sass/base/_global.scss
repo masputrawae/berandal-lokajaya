@@ -7,12 +7,24 @@ body {
     max-height: 100vh;
     background-color: var(--bg-body);
     color: var(--cl-text);
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 // LAYOUTS 
 .layout {
     &__main {
         overflow-x: hidden;
+        overflow-y: auto;
+        height: 100vh;
+        scroll-behavior: smooth;
+
+        &-header {
+            position: sticky;
+            top: 0;
+        }
     }
 
     &__right, &__left {
@@ -23,6 +35,7 @@ body {
         position: fixed;
         overflow-y: auto;
         transition: all 0.3s ease-in-out;
+        z-index: 5;
     }
 
     &__left {
@@ -79,6 +92,10 @@ body {
     }
 }
 
+// FLEX JUSTIFY
+.flex-justify {
+    @include m.flex-justify();
+}
 
 /* Chrome, Edge and Safari */
 *::-webkit-scrollbar {

@@ -3,10 +3,18 @@
 @use "../abstract/breakpoint" as bp;
 
 .header {
-    padding: v.$size-3;
+    background-color: var(--bg-primary);
+    padding: v.$size-3 v.$size-2;
+    border-bottom: v.$border-3 solid var(--cl-accent);
+    border-bottom-right-radius: v.$size-2;
+    border-bottom-left-radius: v.$size-2;
     &__top {
-        @include m.flex-justify(space-between, start);
-
-        .page-title {color: var(--cl-primary);}
+        padding-bottom: v.$size-5;
+        .page-title {
+            color: var(--cl-primary);
+            padding: v.$size-5;
+            margin: 0;
+            line-height: 0;
+        }
     }
 }

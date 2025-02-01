@@ -1,7 +1,7 @@
 <aside class="sidebar">
-  <div class="sidebar__top">
+  <div class="sidebar__top flex-justify">
     
-    <a class="sidebar__logo" href="">
+    <a class="sidebar__logo flex-justify" href="">
       <img class="sidebar__logo-img" src="https://placehold.co/80" alt="">
       <div class="sidebar__logo-title">{{ .Site.Title }}</div>
     </a>
@@ -33,7 +33,7 @@
     </div>
 
     <div class="tab-area">
-      <div class="tab-area__content tab-area__content--active" data-tab="filesTab">
+      <div class="tab-area__content tab-area__content--active" data-tab="filesTab" data-tabs-group="group1">
         <nav class="nav">
           <ul class="nav__list">
             {{ template "collapsible_nav" .Site.Home }}
@@ -41,20 +41,20 @@
         </nav>
       </div>
       
-      <div class="tab-area__content" data-tab="searchTab">
+      <div class="tab-area__content" data-tab="searchTab" data-tabs-group="group1">
         {{ partial "elements/search-bar.html" . }}
       </div>
       
-      <div class="tab-area__content" data-tab="categoriesTab">
+      <div class="tab-area__content" data-tab="categoriesTab" data-tabs-group="group1">
         {{ template "categories_list" . }}
       </div>
-      <div class="tab-area__content" data-tab="tagsTab">
+      <div class="tab-area__content" data-tab="tagsTab" data-tabs-group="group1">
         {{ template "tags_list" . }}
       </div>
-      <div class="tab-area__content" data-tab="groupsTab">
+      <div class="tab-area__content" data-tab="groupsTab" data-tabs-group="group1">
         {{ template "groups_list" . }}
       </div>
-      <div class="tab-area__content" data-tab="pinnedTab">
+      <div class="tab-area__content" data-tab="pinnedTab" data-tabs-group="group1">
         {{ template "pinned" . }}
       </div>
     </div>
