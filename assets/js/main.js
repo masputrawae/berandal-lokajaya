@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Add swipe functionality for screens below 992px
   if (window.innerWidth < 992) {
-    let touchStartX = 0;
-    let touchEndX = 0;
+    let touchStartX = 50;
+    let touchEndX = 50;
 
     const handleGesture = () => {
       if (touchEndX < touchStartX) {
