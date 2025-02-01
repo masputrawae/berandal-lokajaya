@@ -1,0 +1,32 @@
+<aside class="sidebar">
+  <div class="sidebar__top">
+    <button class="sidebar__close-btn btn btn--icon" id="rightClose">
+      <i class="bi-x"></i>
+    </button>
+    
+    <div class="word-count">
+      <div>Words: </div> <span id="wordCount">0</span>
+      <div>Characters: </div> <span id="charCount">0</span>
+    </div>
+  </div>
+
+  <div class="sidebar__bottom sidebar__bottom">
+    <select class="tab-selector" data-tabs-group="group2">
+      <option value="tocTab">Table of Contents</option>
+      <option value="relatedTab">Related</option>
+      <option value="referencesTab">References</option>
+    </select>
+
+    <div class="tab-area">
+      <div class="tab-area__content tab-area__content--active" data-tab="tocTab">
+        <nav class="nav nav--toc">{{ .TableOfContents }}</nav>
+      </div>
+      <div class="tab-area__content" data-tab="relatedTab">
+        {{ partial "elements/related-content.html" . }}
+      </div>
+      <div class="tab-area__content" data-tab="referencesTab">
+        {{ partial "elements/references-content.html" . }}
+      </div>
+    </div>
+  </div>
+</aside>

@@ -1,0 +1,26 @@
+// LEBAR TINGGI
+@mixin area-calculation($width, $height){
+    width: $width;
+    height: $height;
+}
+
+
+// GRID SETTING
+@mixin grid-setting($columns, $rows) {
+    display: grid;
+    grid-template-columns: $columns;
+    grid-template-rows: $rows;
+}
+
+// Flex Justify
+@mixin flex-justify($justify: space-between, $align-items: center ) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align-items;
+}
+
+// OVERFLOW SETTING
+@mixin overflow($x: auto, $y: auto){
+    overflow-x: $x;
+    overflow-y: $y;
+}

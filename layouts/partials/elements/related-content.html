@@ -1,0 +1,15 @@
+<nav class="nav">
+  <ul class="nav__list">
+  {{ $related := .Site.RegularPages.Related . | first 20 }}
+    {{ with $related }}
+      {{ range . }}
+        <li class="nav__item">
+          <a class="nav__link" href="{{ .RelPermalink }}">
+            <i class="nav__link-icon bi-link"></i>
+            <span class="nav__link-name">{{ .LinkTitle }}</span>
+          </a>
+        </li>
+      {{ end }}
+    {{ end }}
+  </ul>
+</nav>

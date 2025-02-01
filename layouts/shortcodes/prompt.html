@@ -1,0 +1,19 @@
+{{- $type := .Get "type" -}}
+
+{{- $defaults := dict 
+    "tip"      (dict "icon" "lightbulb" "title" "Tip")
+    "info"     (dict "icon" "info-circle" "title" "Informasi")
+    "warning"  (dict "icon" "exclamation-triangle" "title" "Peringatan")
+    "danger"   (dict "icon" "radioactive" "title" "Bahaya")
+    "error"    (dict "icon" "bug" "title" "Kesalahan")
+-}}
+
+{{- $data := index $defaults $type | default (dict "icon" "question-circle" "title" "Catatan") -}}
+
+<div class="prompt prompt--{{ $type }}">
+    <div class="prompt__header">
+        <i class="prompt__icon prompt__icon--{{ $type }} bi-{{ .Get "icon" | default $data.icon }}"></i>
+        <strong class="prompt__title prompt__title--{{ $type }}">{{ .Get "title" | default $data.title }}</strong>
+    </div>
+    <p class="prompt__content">{{ .Inner }}</p>
+</div>

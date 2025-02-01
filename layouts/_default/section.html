@@ -1,0 +1,18 @@
+{{ define "main" }}
+<article class="page">
+  <header class="page__header">
+    <h1 class="page__title">{{ .Title }}</h1>
+    <p class="page__subtitle">{{ .Params.subtitle }}</p>
+  </header>
+
+  <section class="page__content" id="contentArticle">
+    {{ .Content }}
+  </section>
+
+  <nav class="nav">
+    <ul class="nav__list">
+      {{ template "section_navigation" . }}
+    </ul>
+  </nav>
+</article>
+{{ end }}

@@ -1,0 +1,12 @@
+<nav class="nav">
+  <ul class="nav__list">
+    {{ range .Params.reference }}
+      <li class="nav__item">
+        <a class="nav__link" href="{{ .url }}" target="_blank" rel="noopener noreferrer">
+          <i class="nav__link-icon bi-link-45deg"></i>
+          <span class="nav__link-name">{{ .name }}</span>
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+</nav>

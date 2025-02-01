@@ -1,0 +1,29 @@
+@mixin min-width($size) {
+    @if $size == 'xs' {
+        @media (min-width: 0) {
+            @content;
+        }
+    } @else if $size == 'sm' {
+        @media (min-width: 576px) {
+            @content;
+        }
+    } @else if $size == 'md' {
+        @media (min-width: 768px) {
+            @content;
+        }
+    } @else if $size == 'lg' {
+        @media (min-width: 992px) {
+            @content;
+        }
+    } @else if $size == 'xl' {
+        @media (min-width: 1200px) {
+            @content;
+        }
+    } @else if $size == 'xxl' {
+        @media (min-width: 1400px) {
+            @content;
+        }
+    } @else {
+        @warn "Breakpoint '#{$size}' tidak ditemukan.";
+    }
+}

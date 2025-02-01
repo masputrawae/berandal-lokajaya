@@ -1,0 +1,23 @@
+{{ define "main" }}
+<article class="page">
+  <header class="page__header">
+    <h1 class="page__title">Posts with the Category: {{ .Title }}</h1>
+  </header>
+  
+  <section class="page__content">
+    {{ .Content }}
+  </section>
+
+  <nav class="nav">
+    <ul class="nav__list">
+      {{ range .Pages }}
+        <li class="nav__item">
+          <a class="nav__link" href="{{ .Permalink }}">
+            <span class="nav__link-name">{{ .Title }}</span>
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+</article>
+{{ end }}

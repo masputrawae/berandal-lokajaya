@@ -1,0 +1,28 @@
+<header class="header">
+  <div class="header__top">
+    <button class="btn btn--icon btn--open" id="leftOpen">
+      <i class="bi-layout-text-window-reverse"></i>
+    </button>
+  
+    <h1 class="page-title">{{ .Title }}</h1>
+  
+    <button class="btn btn--icon btn--open" id="rightOpen">
+      <i class="bi-book"></i>
+    </button>
+  </div>
+
+  <div class="header__bottom">
+    <nav class="breadcrumb">
+      <ul class="breadcrumb__list">
+        {{ range .Ancestors.Reverse }}
+          <li class="breadcrumb__item">
+            <a class="breadcrumb__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </li>
+        {{ end }}
+        <li class="breadcrumb__item">
+          <a class="breadcrumb__link breadcrumb__link--active" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,77 @@
+@use "../abstract/variables" as v;
+@use "../abstract/mixins" as m;
+@use "../abstract/breakpoint" as bp;
+
+:root {
+    --cl-accent: #FF5722;
+    --cl-primary: #4CAF50;
+    --cl-secondary: #8E24AA;
+    --cl-tertiary: #FFEB3B;
+
+    --cl-info: #2196F3;
+    --cl-tip: #9E9E9E;
+    --cl-success: var(--cl-primary);
+    --cl-warning: #FF9800;
+    --cl-danger: #F44336;
+    --cl-error: #D32F2F;
+
+    --cl-btn: var(--cl-primary);
+    --cl-btn-active: #388E3C;
+    --cl-btn-hover: #43A047;
+    --cl-btn-focus: #2E7D32;
+
+    --cl-link: var(--cl-primary);
+    --cl-link-active: #388E3C;
+    --cl-link-hover: #43A047;
+    --cl-link-focus: #2E7D32;
+
+    --cl-shadow: 
+        0px 4px 10px rgba(0, 0, 0, 0.15),
+        0px 8px 20px rgba(0, 0, 0, 0.1),
+        inset 0px 0px 8px rgba(0, 0, 0, 0.1);
+
+    --cl-shadow-hover: 
+        0px 6px 12px rgba(0, 0, 0, 0.2),
+        0px 10px 25px rgba(0, 0, 0, 0.15),
+        inset 0px 0px 6px rgba(0, 0, 0, 0.05);
+
+    --cl-shadow-active: 
+        0px 2px 6px rgba(0, 0, 0, 0.3),
+        0px 4px 12px rgba(0, 0, 0, 0.2),
+        inset 0px 2px 4px rgba(0, 0, 0, 0.15);
+
+    --cl-shadow-focus: 
+        0px 0px 0px 4px rgba(0, 255, 4, 0.3),
+        0px 4px 12px rgba(0, 0, 0, 0.2);
+
+    --cl-shadow-text: 
+        0px 2px 6px rgba(0, 0, 0, 0.25);
+
+    --cl-shadow-text-hover: 
+        0px 3px 8px rgba(0, 0, 0, 0.3);
+
+    --cl-shadow-text-active: 
+        0px 1px 4px rgba(0, 0, 0, 0.4);
+
+    --cl-shadow-text-focus: 
+        0px 0px 0px 3px rgba(43, 255, 0, 0.3),
+        0px 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+:root[data-theme=dark] {
+    --bg-body: #121212;
+    --bg-primary: #1E1E1E;
+    --bg-secondary: #2A2A2A;
+    --bg-tertiary: #333333;
+    --cl-text: #E0E0E0;
+    --cl-btn-bg: #1E1E1E;
+}
+
+:root[data-theme=light] {
+    --bg-body: #FFFFFF;
+    --bg-primary: #F5F5F5;
+    --bg-secondary: #E0E0E0;
+    --bg-tertiary: #BDBDBD;
+    --cl-text: #212121;
+    --cl-btn-bg: #FFFFFF;
+}

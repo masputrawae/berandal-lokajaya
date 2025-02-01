@@ -1,0 +1,37 @@
+{{ $allowedAlignments := slice "left" "right" "center" "full" }}
+{{ $alignment := .Get "align" | default "center" }}
+{{ if not (in $allowedAlignments $alignment) }}
+  {{ $alignment = "center" }}
+{{ end }}
+<figure class="image-{{ $alignment }}">
+  <img src="{{ .Get "src" }}" alt="{{ .Get "alt" | default "Gambar" }}">
+  {{ if .Get "caption" }}
+    <figcaption>{{ .Get "caption" }}</figcaption>
+  {{ end }}
+</figure>
+
+<style>
+  figure {
+    margin: 1em 0;
+  }
+  
+  figure.image-left {
+    float: left;
+    margin-right: 1em;
+  }
+  
+  figure.image-right {
+    float: right;
+    margin-left: 1em;
+  }
+  
+  figure.image-center {
+    display: block;
+    text-align: center;
+  }
+  
+  figure.image-full img {
+    width: 100%;
+    height: auto;
+  }  
+</style>

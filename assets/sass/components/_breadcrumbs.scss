@@ -1,0 +1,39 @@
+@use "../abstract/variables" as v;
+@use "../abstract/mixins" as m;
+@use "../abstract/breakpoint" as bp;
+
+.breadcrumb {
+    &__list {
+        @include m.flex-justify(center, center);
+        list-style: none;
+        padding: v.$size-0;
+        margin: v.$size-0;
+    }
+
+    &__item {
+        margin: 0 v.$size-1;
+
+        &:not(:last-child)::after {
+            content: "/";
+            margin-left: v.$size-1;
+            color: var(--cl-active);
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+        color: var(--cl-text);
+        transition: color 0.3s ease;
+
+        &:hover,
+        &:focus {
+            color: var(--cl-link-hover);
+            text-decoration: underline;
+        }
+    }
+
+    &__icon {
+        margin-right: v.$size-1;
+        color: var(--cl-icon);
+    }
+}

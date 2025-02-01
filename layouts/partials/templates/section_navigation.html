@@ -1,0 +1,27 @@
+{{ define "section_navigation" }}
+  {{ if .Pages }}
+    {{ range .Pages }}
+      {{ if .IsSection }}
+        <li class="nav__item">
+          <a class="nav__link" href="{{ .RelPermalink }}">
+            <i class="nav__link-icon bi-folder2"></i>
+            <span class="nav__link-name">{{ .LinkTitle }}</span>
+          </a>
+          <ul class="nav__list">
+            {{ template "section_navigation" . }}
+          </ul>
+        </li>
+      {{ end }}
+    {{ end }}
+    {{ range .Pages }}
+      {{ if .IsPage }}
+        <li class="nav__item">
+          <a class="nav__link" href="{{ .RelPermalink }}">
+            <i class="nav__link-icon bi-file-earmark-text"></i>
+            <span class="nav__link-name">{{ .LinkTitle }}</span>
+          </a>
+        </li>
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

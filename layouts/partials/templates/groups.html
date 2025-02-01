@@ -1,0 +1,24 @@
+{{ define "groups_list" }}
+  <nav class="nav">
+    <ul class="nav__list">
+      {{ range $name, $taxonomy := .Site.Taxonomies.group }}
+        <li class="nav__item">
+          <button class="btn btn--collapse">
+            <i class="btn__icon bi-collection"></i>
+            <span class="btn__name">{{ $name }}</span>
+          </button>
+          <ul class="nav__list nav__list--collapse">
+            {{ range $taxonomy }}
+              <li class="nav__item">
+                <a class="nav__link" href="{{ .Permalink }}">
+                  <i class="nav__link-icon bi-file-earmark-text"></i>
+                  <span class="nav__link-name">{{ .Title }}</span>
+                </a>
+              </li>
+            {{ end }}
+          </ul>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+{{ end }}

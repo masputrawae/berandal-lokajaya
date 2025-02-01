@@ -1,0 +1,72 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+
+  {{/* SEO Meta Tags */}}
+  {{ with .Description }}
+  <meta name="description" content="{{ . }}">
+  {{ end }}
+  <link rel="canonical" href="{{ .Permalink }}">
+  {{ with .Site.Params.author }}
+  <meta name="author" content="{{ . }}">
+  {{ end }}
+
+  {{/* Open Graph Meta Tags */}}
+  <meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}">
+  {{ with .Description }}
+  <meta property="og:description" content="{{ . }}">
+  {{ end }}
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ .Permalink }}">
+  {{ with .Params.images }}
+  <meta property="og:image" content="{{ index . 0 | absURL }}">
+  {{ end }}
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+
+  {{/* Twitter Card Meta Tags */}}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ .Title }} | {{ .Site.Title }}">
+  {{ with .Description }}
+  <meta name="twitter:description" content="{{ . }}">
+  {{ end }}
+  {{ with .Params.images }}
+  <meta name="twitter:image" content="{{ index . 0 | absURL }}">
+  {{ end }}
+  {{ with .Site.Params.twitter }}
+  <meta name="twitter:site" content="@{{ . }}">
+  <meta name="twitter:creator" content="@{{ . }}">
+  {{ end }}
+  
+  {{/* Load the CSS files from the CDN */}}
+  {{ range .Site.Params.cssCDN }}
+  <link rel="stylesheet" href="{{ . }}">
+  {{ end }}
+
+  {{/* Load the RSS feed */}}  
+  <link rel="alternate" type="application/rss+xml" href="{{ relURL "/index.xml" }}" title="{{ .Site.Title }}">
+
+  {{/* Load the favicon */}}
+  {{ if .IsHome }}
+  <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
+  {{ end }}
+
+  {{/* Load the main SASS/SCSS file */}}
+  {{ with resources.Get "sass/main.scss" }}
+  {{ $opts := dict
+    "enableSourceMap" (not hugo.IsProduction)
+    "outputStyle" (cond hugo.IsProduction "compressed" "expanded")
+    "targetPath" "css/main.css"
+    "transpiler" "dartsass"
+  }}
+  {{ with . | toCSS $opts }}
+    {{ if hugo.IsProduction }}
+      {{ with . | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+      {{ end }}
+    {{ else }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{ end }}
+  {{ end }}
+{{ end }}
+</head>

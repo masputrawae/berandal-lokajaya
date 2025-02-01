@@ -1,0 +1,58 @@
+{{ $allowedClasses := slice "info" "warning" "danger" "success" }}
+{{ $class := .Get "class" | default "info" }}
+{{ if not (in $allowedClasses $class) }}
+  {{ $class = "info" }}
+{{ end }}
+<blockquote class="{{ $class }}">
+  {{ if .Get "title" }}
+    <strong>{{ .Get "title" }}</strong>
+  {{ end }}
+  <p>{{ .Inner }}</p>
+</blockquote>
+<style>
+  /* Style dasar untuk blockquote */
+blockquote {
+  border-left: 4px solid;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+
+/* Style untuk kelas 'info' */
+blockquote.info {
+  border-color: #2196f3;
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
+/* Style untuk kelas 'warning' */
+blockquote.warning {
+  border-color: #ff9800;
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+/* Style untuk kelas 'danger' */
+blockquote.danger {
+  border-color: #f44336;
+  background-color: #ffebee;
+  color: #b71c1c;
+}
+
+/* Style untuk kelas 'success' */
+blockquote.success {
+  border-color: #4caf50;
+  background-color: #e8f5e9;
+  color: #1b5e20;
+}
+
+/* Style untuk elemen <strong> di dalam blockquote */
+blockquote strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+</style>

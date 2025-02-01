@@ -1,0 +1,14 @@
+{{ define "tags_list" }}
+  <nav class="nav">
+    <ul class="nav__list">
+      {{ range .Site.Taxonomies.tags }}
+        <li class="nav__item">
+          <a class="nav__link" href="{{ .Page.RelPermalink }}">
+            <i class="nav__link-icon bi-tags"></i>
+            <span class="nav__link-name">{{ .Page.Title }}</span>
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+{{ end }}

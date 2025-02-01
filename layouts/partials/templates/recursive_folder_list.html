@@ -1,0 +1,17 @@
+{{ define "recursive_folder_list" }}
+<ul class="nav__list">
+  {{ if .Pages }}
+    {{ range .Pages }}
+      {{ if .IsSection }}
+        <li class="nav__item">
+          <a class="link" href="{{ .RelPermalink }}">
+            <i class="link__icon bi-folder2"></i>
+            <span class="link__name">{{ .LinkTitle }}</span>
+          </a>
+          {{ template "recursive_folder_list" . }}
+        </li>
+      {{ end }}
+    {{ end }}
+  {{ end }}
+</ul>
+{{ end }}

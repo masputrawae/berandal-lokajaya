@@ -1,0 +1,12 @@
+@use "../abstract/variables" as v;
+@use "../abstract/mixins" as m;
+@use "../abstract/breakpoint" as bp;
+
+.header {
+    padding: v.$size-3;
+    &__top {
+        @include m.flex-justify(space-between, start);
+
+        .page-title {color: var(--cl-primary);}
+    }
+}
