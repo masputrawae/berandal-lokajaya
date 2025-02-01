@@ -20,19 +20,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.innerWidth < 992) {
     let touchStartX = 0;
     let touchEndX = 0;
-    const threshold = 50; // Set minimal geseran 50px agar tidak terlalu sensitif
+    const threshold = window.innerWidth * 0.2; //
 
     const handleGesture = () => {
       let diff = touchEndX - touchStartX;
 
       if (Math.abs(diff) > threshold) {
         if (diff < 0) {
-          // Geser ke kiri (tutup left, buka right)
-          document.querySelector(".layout__left").classList.remove("active");
+        document.querySelector(".layout__left").classList.remove("active");
           document.querySelector(".layout__right").classList.add("active");
         } else {
-          // Geser ke kanan (buka left, tutup right)
-          document.querySelector(".layout__left").classList.add("active");
+        document.querySelector(".layout__left").classList.add("active");
           document.querySelector(".layout__right").classList.remove("active");
         }
       }
