@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.innerWidth < 992) {
     let touchStartX = 0;
     let touchEndX = 0;
-    const threshold = window.innerWidth * 0.2; //
+    const threshold = window.innerWidth * 0.3; 
 
     const handleGesture = () => {
       let diff = touchEndX - touchStartX;

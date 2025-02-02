@@ -1,28 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ or .Site.Language.LanguageCode .Site.Language.Lang }}" data-theme="dark">
 {{ partial "head.html" . }}
-<body>
-  <div class="layout">
-    <div class="layout__left">
-      {{ partial "left-sidebar.html" . }}
-    </div>
-
-    <div class="layout__main">
-      <div class="layout__main-header">
-        {{ partial "header.html" . }}
-      </div>
-      <div class="layout__main-page">
-        {{ block "main" . }}{{ end }}
-      </div>
-      <div class="layout__main-footer">
-        {{ partial "footer.html" . }}
-      </div>
-    </div>
-
-    <div class="layout__right">
-      {{ partial "right-sidebar.html" . }}
-    </div>
+<body class="layout">
+  {{ partial "left-sidebar.html" . }}
+  <div class="main-area">
+    {{ partial "header.html" . }}
+    {{ block "main" . }}{{ end }}
+    {{ partial "footer.html" . }}
   </div>
+  {{ partial "right-sidebar.html" . }}
   {{ partial "script.html" . }}
 </body>
 </html>

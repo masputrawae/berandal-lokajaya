@@ -39,6 +39,7 @@
     --paragraph-space: clamp(1rem, 2vw + 1rem, 2.5rem);
     --title-space: clamp(1.5rem, 3vw + 1rem, 3rem);
 }
+
 html {font-size: 100%;}
 body {
     font-size: var(--fs-body);

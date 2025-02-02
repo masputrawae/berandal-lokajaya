@@ -92,11 +92,6 @@ body {
     }
 }
 
-// FLEX JUSTIFY
-.flex-justify {
-    @include m.flex-justify();
-}
-
 /* Chrome, Edge and Safari */
 *::-webkit-scrollbar {
     height: v.$size-1;
