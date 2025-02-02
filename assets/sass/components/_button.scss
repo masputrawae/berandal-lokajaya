@@ -6,6 +6,11 @@
     padding: var(--spacing-1) var(--spacing-3);
     color: var(--cl-secondary);
     background: none;
+    box-shadow: var(--cl-shadow);
+    border-radius: var(--border-radius-2);
+    &:hover {
+        box-shadow: var(--cl-shadow-hover);
+    }
 
     &--icon {
         font-size: var(--fs-xl);
@@ -17,7 +22,6 @@
         }
 
         @include bp.min-width(lg) {
-            border-radius: var(--border-radius-2);
             border-bottom: 1px solid var(--cl-secondary);
             padding: var(--spacing-1);
             box-shadow: var(--cl-shadow);

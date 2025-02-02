@@ -12,6 +12,16 @@
     border-bottom: var(--border-3) solid var(--cl-secondary);
     border-bottom-right-radius: var(--border-radius-5);
     border-bottom-left-radius: var(--border-radius-5);
+    box-shadow: var(--cl-shadow);
+    gap: var(--spacing-1);
+
+    &:hover {
+        box-shadow: var(--cl-shadow-hover);
+    }
+
+    &__left, &__right {
+        gap: var(--spacing-2);
+    }
 
     @include bp.min-width(lg) {
         padding: var(--spacing-4) var(--spacing-2);

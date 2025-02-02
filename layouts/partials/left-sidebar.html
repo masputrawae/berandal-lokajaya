@@ -1,34 +1,32 @@
 <aside class="sidebar sidebar--left">
-  <div class="sidebar__top flex-justify">
+  <div class="sidebar__top-wrapper">
+    <div class="sidebar__top flex-justify">
     
-    <a class="sidebar__logo flex-justify" href="">
-      <img class="sidebar__logo-img" src="https://placehold.co/80" alt="">
-      <div class="sidebar__logo-title">{{ .Site.Title }}</div>
-    </a>
-
-    <button class="sidebar__close-btn btn btn--icon" id="leftClose">
-      <i class="bi-x"></i>
-    </button>
-  </div>
-
-  <div class="sidebar__bottom">
-    <div class="flex-justify">
+      <a class="sidebar__logo flex-justify" href="">
+        <img class="sidebar__logo-img" src="https://placehold.co/80" alt="">
+        <div class="sidebar__logo-title">{{ .Site.Title }}</div>
+      </a>
+  
+      <button class="sidebar__close-btn btn btn--icon" id="leftClose">
+        <i class="bi-x"></i>
+      </button>
+    </div>
+    <div class="custom-select flex-start">
       <select class="tab-selector" data-tabs-group="group1">
         <option value="filesTab">Files</option>
-        <option value="searchTab">Search</option>
         <option value="categoriesTab">Categories</option>
         <option value="tagsTab">Tags</option>
         <option value="groupsTab">Groups</option>
         <option value="pinnedTab">Pinned</option>
       </select>
-
-      <div class="flex-justify">
-        <button class="sidebar__collapse-btn btn btn--icon" id="toggleCollapseAll">
-          <i class="bi-folder2-open"></i>
-        </button>
-      </div>
+  
+      <button class="sidebar__collapse-btn btn btn--icon" id="toggleCollapseAll">
+        <i class="bi-folder2-open"></i>
+      </button>
     </div>
+  </div>
 
+  <div class="sidebar__bottom">
     <div class="tab-area">
       <div class="tab-area__content tab-area__content--active" data-tab="filesTab" data-tabs-group="group1">
         <nav class="nav">

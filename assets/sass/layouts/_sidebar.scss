@@ -1,3 +1,83 @@
 @use "../abstract/variables" as v;
 @use "../abstract/mixins" as m;
 @use "../abstract/breakpoint" as bp;
+
+.sidebar {
+    background-color: var(--bg-primary);
+
+    &__top-wrapper {
+        background-color: var(--bg-primary);
+        padding: var(--spacing-1) var(--spacing-3);
+        border-bottom: var(--border-2) solid var(--cl-secondary);
+        border-radius: var(--border-radius-5);
+        position: sticky;
+        top: 0;
+        box-shadow: var(--cl-shadow);
+    }
+
+    &__logo {
+        text-decoration: none;
+        gap: var(--spacing-3);
+
+        &-img {
+            width: 45px;
+            height: 45px;
+            border-radius: var(--border-radius-2);
+            box-shadow: var(--cl-shadow);
+            &:hover {
+                box-shadow: var(--cl-shadow-hover);
+            }
+        }
+
+        &-title {
+            color: var(--cl-secondary);
+            font-family: var(--font-title);
+            font-size: var(--fs-4xl);
+        }
+    }
+}
+
+.custom-select {
+    border-top: var(--border-2) solid var(--cl-secondary);
+    border-bottom: var(--border-2) solid var(--cl-secondary);
+    border-radius: var(--border-radius-5);
+    padding: var(--spacing-1) var(--spacing-3);
+	position: relative;
+    margin: var(--spacing-3) var(--spacing-1);
+    box-shadow: var(--cl-shadow);
+    &:hover {
+        box-shadow: var(--cl-shadow-hover);
+    }
+
+    .tab-selector {
+        appearance: none;
+        -webkit-appearance: none;
+        min-width: 80%;
+        font-size: var(--fs-lg);
+        padding: var(--spacing-1) var(--spacing-3);
+        border-radius: var(--border-radius-5);
+        background-color: var(--bg-secondary);
+        box-shadow: var(--cl-shadow);
+        color: var(--cl-text);
+        cursor: pointer;
+        outline: none;
+        &:hover {
+            box-shadow: var(--cl-shadow-hover);
+        }
+
+        &:hover, &:focus {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-5);
+        }
+    }
+}
+
+.tab-area {
+    &__content {
+        display: none;
+
+        &--active {
+            display: block;
+        }
+    }
+}
