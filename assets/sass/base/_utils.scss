@@ -5,7 +5,12 @@
 .flex-justify {
     @include m.flex-justify();
 }
+@include bp.min-width(lg){
+    .lg-flex-justify{
+        @include m.flex-justify();
+    }
+}
 
-.flex-center {
-    @include m.flex-justify(center, center);
+.flex-start {
+    @include m.flex-justify(start, center);
 }

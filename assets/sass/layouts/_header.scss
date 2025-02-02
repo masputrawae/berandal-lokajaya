@@ -3,5 +3,94 @@
 @use "../abstract/breakpoint" as bp;
 
 .header {
+    position: sticky;
+    top: 0;
+    height: 4rem;
     background-color: var(--bg-primary);
+    padding: var(--spacing-3) var(--spacing-1);
+    z-index: 5;
+    border-bottom: var(--border-3) solid var(--cl-secondary);
+    border-bottom-right-radius: var(--border-radius-5);
+    border-bottom-left-radius: var(--border-radius-5);
+
+    @include bp.min-width(lg) {
+        padding: var(--spacing-4) var(--spacing-2);
+        height: 5rem;
+    }
+
+    &__site-title{
+        color: var(--cl-secondary);
+        font-family: var(--font-title);
+        font-size: var(--fs-xl);
+        @include bp.min-width(lg){
+            display: none;
+        }
+    }
+}
+.breadcrumb {
+    display: none;
+
+    @include bp.min-width(lg) {
+        display: block;
+        
+        &__list {
+            list-style: none;
+            padding: var(--spacing-1) var(--spacing-2);
+            width: 320px;
+            overflow-x: auto;
+            white-space: nowrap;
+            scroll-snap-type: x mandatory;
+            
+            &::-webkit-scrollbar {
+                height: var(--spacing-1); 
+                border-radius: var(--border-radius-2);
+                background-color: var(--bg-secondary);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: var(--cl-secondary);
+                &:hover {
+                    background-color: var(--cl-primary);
+                }
+            }
+        }
+
+        &__item {
+            padding-left: var(--spacing-5);
+            position: relative;
+            scroll-snap-align: start;
+        }
+
+        &__item::before {
+            content: '/';
+            position: absolute;
+            left: var(--spacing-2);
+            top: 0;
+            font-size: var(--fs-md);
+            color: var(--cl-text-light);
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        &__item:first-child::before {
+            content: '';
+        }
+
+        &__link {
+            color: var(--cl-text);
+            text-decoration: none;
+            font-family: var(--font-nav-link);
+            position: relative;
+            display: inline-block;
+            transition: color 0.3s ease;
+
+            &--active {
+                color: var(--cl-secondary);
+            }
+        }
+
+        &__link:hover {
+            color: var(--cl-primary);
+        }
+    }
 }

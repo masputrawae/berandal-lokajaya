@@ -4,8 +4,10 @@
       <i class="bi-layout-text-window-reverse"></i>
     </button>
 
+    <div class="header__site-title">{{ .Site.Title }}</div>
+
     <nav class="breadcrumb">
-      <ul class="breadcrumb__list flex-center">
+      <ul class="breadcrumb__list flex-start">
         {{ range .Ancestors.Reverse }}
           <li class="breadcrumb__item">
             <a class="breadcrumb__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
@@ -19,9 +21,9 @@
   </div>
 
   <div class="header__right flex-justify">
-    <button class="btn btn--icon btn--search-custom">
+    <button class="btn btn--icon btn--search-custom lg-flex-justify">
+      <span class="btn__text">Pencarian..........</span>
       <i class="bi-search"></i>
-      <span>Cari.........</span>
     </button>
 
     <button class="btn btn--icon" id="switchTheme">
