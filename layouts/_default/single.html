@@ -11,7 +11,7 @@
         <p class="content__time">
           Publish on: 
           <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-          <strong>By</strong> {{ .Params.author | default .Site.Params.author }}
+          <strong>By</strong> {{ $.Params.author | default $.Site.Params.author }}
         </p>
       {{ end }}
     </header>

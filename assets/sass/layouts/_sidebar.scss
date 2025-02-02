@@ -1,33 +1,3 @@
 @use "../abstract/variables" as v;
 @use "../abstract/mixins" as m;
 @use "../abstract/breakpoint" as bp;
-
-.sidebar {
-    background-color: var(--bg-primary);
-
-    &__top {
-        padding: v.$size-2;
-    }
-
-    &__logo {
-        text-decoration: none;
-
-        &-img {
-            width: 50px;
-            height: 50px;
-        }
-
-        &-title {
-            font-family: var(--font-main-title);
-            font-size: var(--fs-h1);
-            color: var(--cl-accent);
-        }
-    }
-}
-.tab-area__content {
-    display: none;
-
-    &--active {
-        display: block;
-    }
-}
