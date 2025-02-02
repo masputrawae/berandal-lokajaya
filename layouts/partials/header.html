@@ -1,11 +1,11 @@
-<header class="header">
-  <div class="header__left">
-    <button class="btn btn--icon btn--open">
+<header class="header flex-justify">
+  <div class="header__left flex-justify">
+    <button class="btn btn--icon btn--open" id="leftOpen">
       <i class="bi-layout-text-window-reverse"></i>
     </button>
 
     <nav class="breadcrumb">
-      <ul class="breadcrumb__list">
+      <ul class="breadcrumb__list flex-center">
         {{ range .Ancestors.Reverse }}
           <li class="breadcrumb__item">
             <a class="breadcrumb__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
@@ -18,17 +18,17 @@
     </nav>
   </div>
 
-  <div class="header__right">
+  <div class="header__right flex-justify">
     <button class="btn btn--icon btn--search-custom">
       <i class="bi-search"></i>
       <span>Cari.........</span>
     </button>
 
-    <button class="btn btn--icon">
+    <button class="btn btn--icon" id="switchTheme">
       <i class="bi-moon"></i>
     </button>
 
-    <button class="btn btn--icon">
+    <button class="btn btn--icon" id="rightOpen">
       <i class="bi-book"></i>
     </button>
   </div>

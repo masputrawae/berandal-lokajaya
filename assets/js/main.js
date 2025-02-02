@@ -13,38 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .addEventListener("click", () => toggleActive(sideElement));
   };
 
-  setupToggle("leftOpen", "leftClose", ".layout__left");
-  setupToggle("rightOpen", "rightClose", ".layout__right");
-
-  // Add swipe functionality for screens below 992px
-  if (window.innerWidth < 992) {
-    let touchStartX = 0;
-    let touchEndX = 0;
-    const threshold = window.innerWidth * 0.3; 
-
-    const handleGesture = () => {
-      let diff = touchEndX - touchStartX;
-
-      if (Math.abs(diff) > threshold) {
-        if (diff < 0) {
-        document.querySelector(".layout__left").classList.remove("active");
-          document.querySelector(".layout__right").classList.add("active");
-        } else {
-        document.querySelector(".layout__left").classList.add("active");
-          document.querySelector(".layout__right").classList.remove("active");
-        }
-      }
-    };
-
-    document.addEventListener("touchstart", (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
-
-    document.addEventListener("touchend", (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleGesture();
-    });
-  }
+  setupToggle("leftOpen", "leftClose", ".sidebar--left");
+  setupToggle("rightOpen", "rightClose", ".sidebar--right");
 });
 
 const switchTheme = document.getElementById("switchTheme");

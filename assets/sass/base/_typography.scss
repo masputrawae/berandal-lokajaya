@@ -1,3 +1,51 @@
-@use "../abstract/variables" as v;
-@use "../abstract/mixins" as m;
-@use "../abstract/breakpoint" as bp;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&family=Poppins:wght@400;600&family=Roboto:wght@400;500&family=Roboto+Slab:wght@400;700&family=Open+Sans:wght@400;600&display=swap");
+
+html {
+  font-size: var(--fs-html);
+}
+
+body {
+    font-family: var(--font-base);
+    font-size: var(--fs-base);
+    font-weight: false;
+    line-height: 1.65;
+}
+
+article {
+    p {
+        font-size: 1em;
+        font-family: var(--font-paragraph);
+    }
+
+    h1, h2, h3, h4, h5 {
+        font-family: var(--font-heading);
+        font-weight: true;
+        line-height: 1.15;
+    }
+
+    h1 {
+        font-weight: 700;
+        margin-top: 0;
+        font-size: var(--fs-4xl);
+    }
+
+    h2 {font-size: var(--fs-3xl);}
+    h3 {font-size: var(--fs-2xl);}
+    h4 {font-size: var(--fs-xl);}
+    h5 {font-size: var(--fs-lg);}
+    caption {font-size: var(--fs-tiny);}
+    small {font-size: var(--fs-sm);}
+    pre code {
+        font-family: var(--font-monospace);
+        font-size: var(--fs-tiny);
+    }
+    code {
+        font-size: var(--fs-sm);
+    }
+    b, strong {color: var(--cl-accent);}
+    del {color: var(--cl-muted);}
+    a {
+        color: var(--cl-secondary);
+        font-family: var(--font-nav-link);
+    }
+}
