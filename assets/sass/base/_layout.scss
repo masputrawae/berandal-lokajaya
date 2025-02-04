@@ -14,11 +14,17 @@ body {
         // USING UTILITY : | .max-height-100dvb | .max-width-100vw | 
         overflow-y: auto;
         overflow-x: hidden;
+        scroll-behavior: smooth;
+
+        main {
+            background-color: var(--cl-bg-primary);
+        }
     }
 
     // SIDEBAR
     .sidebar {
         // USING UTILITY : | .max-height-100dvb |
+        background-color: var(--cl-bg-primary);
         max-width: 320px;
         min-width: 320px;
         position: fixed;
@@ -26,6 +32,7 @@ body {
         transition: transform 0.5s cubic-bezier(1, 0, 0, 1), min-width 0.5s, max-width 0.5s;
         overflow-y: auto;
         overflow-x: hidden;
+        z-index: 20;
 
         &--left {
             left: 0;

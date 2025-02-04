@@ -3,13 +3,12 @@
 
 .header {
     // USING UTILITY : | .justify-content-between |
+    // USING UTILITY : | .position-sticky : top-0
     background-color: var(--cl-bg-secondary);
     padding: var(--spacing-2);
     min-height: 4rem;
     max-height: 4rem;
-    position: sticky; // potensi duplikat !
     border-bottom: var(--border-3) solid var(--cl-border);
-    top: 0;
 
     &__left {
         // USING UTILITY : | .justify-content-between |

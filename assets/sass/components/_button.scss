@@ -6,9 +6,14 @@
     border: var(--border-2) solid var(--cl-border);
     border-radius: var(--border-radius-1);
     background-color: var(--cl-bg-tertiary);
-
+    color: var(--cl-btn);
     .bi {
-        color: var(--cl-btn);
         font-size: var(--fs-3xl);
+    }
+
+    &--collapse {
+        text-align: start;
+        min-width: 100vw;
+        border-color: transparent;
     }
 }

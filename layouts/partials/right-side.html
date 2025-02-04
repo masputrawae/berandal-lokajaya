@@ -1,4 +1,4 @@
-<header class="sidebar-header">
+<header class="sidebar-header position-sticky">
   <div class="sidebar-header__top justify-content-between">
     <button class="btn btn--icon btn--close" id="rightClose">
       <i class="bi bi-x"></i>
@@ -6,7 +6,7 @@
     
     <div class="word-count">Word Count: {{- .WordCount -}}</div>
   </div>
-  
+  <div class="sidebar-header__title">{{- .Title -}}</div>
   <div class="sidebar-header__bottom justify-content-between">
     <div class="justify-content-between">
       <select class="tab-select" data-tab-group="tab-group-2">
@@ -26,9 +26,7 @@
         <option value="17">17px</option>
         <option value="18">18px</option>
       </select>
-    </div>
-    
-    <div class="sidebar-header__title">{{- .Title -}}</div>
+    </div>  
   </div>
 </header>
 

@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // TABS
   document.addEventListener("DOMContentLoaded", function () {
     const tabSelects = document.querySelectorAll(".tab-select");
-    const tabLists = document.querySelectorAll(".nav__list-tabs");
+    const tabLists = document.querySelectorAll(".nav__list-tab");
     
     tabSelects.forEach(tabSelect => {
         const tabGroup = tabSelect.dataset.tabGroup;
