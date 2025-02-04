@@ -2,7 +2,7 @@
 @use '../abstract/breakpoint' as bp;
 
 body {
-    @include m.max-width-height(100vw, 100dvb);
+    // USING UTILITY : .max-height-100dvb .max-width-100vw 
     overflow: hidden;
     background-color: var(--cl-bg-body);
     color: var(--cl-text);
@@ -11,15 +11,16 @@ body {
 // WRAPPER
 .layout {
     .main-page {
-        @include m.max-width-height(100vw, 100dvb);
+        // USING UTILITY : | .max-height-100dvb | .max-width-100vw | 
         overflow-y: auto;
         overflow-x: hidden;
     }
 
     // SIDEBAR
     .sidebar {
-        @include m.max-width-height(320px, 100dvb);
-        @include m.min-width-height(320px, 100dvb);
+        // USING UTILITY : | .max-height-100dvb |
+        max-width: 320px;
+        min-width: 320px;
         position: fixed;
         top: 0;
         transition: transform 0.5s cubic-bezier(1, 0, 0, 1), min-width 0.5s, max-width 0.5s;
@@ -44,8 +45,9 @@ body {
         }
     }
 
+    // MD 2 COLUMN
     @include bp.min-width(md) {
-        @include m.flex-justify(stretch, center);
+        @include m.flex-justify(stretch, start);
 
         .main-page {
             min-width: 70%;
@@ -73,6 +75,7 @@ body {
         }
     }
 
+    // LG 3 COLUMN
     @include bp.min-width(lg) {
         .main-page {
             min-width: 60%;

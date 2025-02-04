@@ -1,6 +1,6 @@
-<nav class="nav">
+<nav class="nav justify-content-between">
   {{- range site.Params.social -}}
-    <a class="nav__link justify-content-between" id="{{- .name -}}" href="{{- .url -}}" target="_blank">
+    <a class="nav__link" id="{{- .name -}}" href="{{- .url -}}" target="_blank">
       <i class="{{- .icon -}}"></i> {{- .name | title -}}
     </a>
   {{- end -}}

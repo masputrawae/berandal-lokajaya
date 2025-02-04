@@ -1,0 +1,73 @@
+@use '../abstract/mixins' as m;
+@use '../abstract/breakpoint' as bp;
+
+.header {
+    // USING UTILITY : | .justify-content-between |
+    background-color: var(--cl-bg-secondary);
+    padding: var(--spacing-2);
+    min-height: 4rem;
+    max-height: 4rem;
+    position: sticky; // potensi duplikat !
+    border-bottom: var(--border-3) solid var(--cl-border);
+    top: 0;
+
+    &__left {
+        // USING UTILITY : | .justify-content-between |
+        .site-title {
+            text-decoration: none;
+            font-family: var(--font-title);
+            color: var(--cl-primary);
+            font-size: var(--fs-7xl);
+
+            @include bp.min-width(lg) {
+                display: none;
+            }
+        }
+    }
+
+    //&__right {
+        // USING UTILITY : | .justify-content-between |
+        // NO SETT 
+    //}
+}
+
+// BREADCRUMBS
+.nav--breadcrumb {
+    display: none;
+
+    @include bp.min-width(lg){
+        display: block;
+        .nav__list {
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav__item {
+            margin: 0 8px;
+    
+            &:not(:last-child)::after {
+                content: '›';
+                margin-left: var(--spacing-1);
+                font-size: var(--fs-small);
+            }
+        }
+    
+        .nav__link {
+            display: inline-block;
+            font-size: var(--fs-tiny);
+            font-weight: 500;
+    
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    
+        .nav__link--active {
+            color: var(--cl-link-active);
+    
+            &::after {
+                content: '';
+            }
+        }
+    }
+}
