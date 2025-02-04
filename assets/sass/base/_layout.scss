@@ -1,0 +1,97 @@
+@use '../abstract/mixins' as m;
+@use '../abstract/breakpoint' as bp;
+
+body {
+    @include m.max-width-height(100vw, 100dvb);
+    overflow: hidden;
+    background-color: var(--cl-bg-body);
+    color: var(--cl-text);
+}
+
+// WRAPPER
+.layout {
+    .main-page {
+        @include m.max-width-height(100vw, 100dvb);
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    // SIDEBAR
+    .sidebar {
+        @include m.max-width-height(320px, 100dvb);
+        @include m.min-width-height(320px, 100dvb);
+        position: fixed;
+        top: 0;
+        transition: transform 0.5s cubic-bezier(1, 0, 0, 1), min-width 0.5s, max-width 0.5s;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        &--left {
+            left: 0;
+            transform: translateX(-100%);
+        }
+
+        &--right {
+            right: 0;
+            transform: translateX(100%);
+        }
+
+        &--left,
+        &--right {
+            &.active {
+                transform: translateX(0%);
+            }
+        }
+    }
+
+    @include bp.min-width(md) {
+        @include m.flex-justify(stretch, center);
+
+        .main-page {
+            min-width: 70%;
+            width: 100%;
+        }
+
+        .sidebar {
+            &--left {
+                position: sticky;
+                min-width: 30%;
+                max-width: 30%;
+                transform: translateX(0%);
+
+                &.active {
+                    min-width: 0;
+                    max-width: 0;
+                    transform: translateX(-100%);
+                }
+            }
+
+            &--right {
+                min-width: 250px;
+                max-width: 250px;
+            }
+        }
+    }
+
+    @include bp.min-width(lg) {
+        .main-page {
+            min-width: 60%;
+        }
+
+        .sidebar {
+            min-width: 20%;
+            max-width: 20%;
+            transform: translateX(0%);
+
+            &--right {
+                position: sticky;
+
+                &.active {
+                    min-width: 0;
+                    max-width: 0;
+                    transform: translateX(100%);
+                }
+            }
+        }
+    }
+}

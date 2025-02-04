@@ -1,0 +1,45 @@
+{{- define "main" -}}
+<header class="page-header">
+  <h1 class="page-header__title">{{- .Title -}}</h1>
+  <p class="page-header__subtitle">{{- .Params.subtitle -}}</p>
+</header>
+
+<article>
+  <section class="page-article" id="contentArticle">
+    {{- .Content -}}
+  </section>
+</article>
+
+<div class="page-pagination">
+  {{- $pages := site.RegularPages -}}
+  {{- $paginator := .Paginate $pages -}}
+  {{- range $paginator.Pages -}}
+    <div class="card">
+      <img 
+      class="card__image"
+      src="{{- .Params.thumbnail -}}"
+      alt="Thumbnail image for the post titled {{- .Title -}}"
+      >
+      <div class="card__content">
+        <h2 class="card__title">{{- .Title -}}</h2>
+        <p class="card__excerpt">{{- .Params.excerpt -}}</p>
+        <p class="card__time">
+          <time datetime="{{- .Date.Format "2006-01-02" -}}">
+            {{- .Date.Format "January 2, 2006" -}}
+          </time>
+        </p>
+        <div class="card__button">
+          <a class="btn btn--read-more" href="{{- .RelPermalink -}}">
+            <i class="bi bi-arrow-right"></i>
+            <span>Read More</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  {{- end -}}
+  
+  <nav class="nav nav--pagination">
+    {{- template "_internal/pagination.html" . -}}
+  </nav>
+</div>
+{{- end -}}

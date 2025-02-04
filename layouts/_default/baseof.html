@@ -1,34 +1,28 @@
 <!DOCTYPE html>
 <html
-lang="{{ or .Site.Language.LanguageCode .Site.Language.Lang }}"
+lang="{{- or .Site.Language.LanguageCode .Site.Language.Lang -}}"
 data-theme="dark">
 
-{{ partial "head.html" . }}
-<body>
-  <div class="wrapper">
-    <header class="header flex-justify-between">
+{{- partial "head.html" . -}}
+<body class="layout">
+  <aside class="sidebar sidebar--left">
+    {{- partial "left-side.html" . -}}
+  </aside>
+  <div class="main-page">
+    <header class="header">
       {{- partial "header.html" . -}}
     </header>
-    
-    <div class="main-page">
-      <aside class="main-page__left">
-        {{- partial "left-side.html" . -}}
-      </aside>
-      
-      <div class="main-page__center">
-        <main>
-          {{- block "main" . -}}{{ end }}
-        </main>
-        <footer>
-          {{- partial "footer.html" . -}}
-        </footer>
-      </div>
-      
-      <aside class="main-page__right">
-        {{- partial "right-side.html" . -}}
-      </aside>
+    <main class="main">
+      {{- block "main" . -}}{{- end -}}
+    </main>
+    <footer class="footer">
+      {{- partial "footer.html" . -}}
+    </footer>
     </div>
   </div>
-  {{ partial "script.html" . }}
+  <aside class="sidebar sidebar--right">
+    {{- partial "right-side.html" . -}}
+  </aside>
+  {{- partial "script.html" . -}}
 </body>
 </html>

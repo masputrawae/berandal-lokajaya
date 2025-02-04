@@ -1,0 +1,102 @@
+{{/* Load the JavaScript files from the CDN */}}
+{{- range .Site.Params.jsCDN -}}
+<script src="{{- . -}}"></script>
+{{- end -}}
+
+{{/* Load the main JavaScript file */}}
+{{- with resources.Get "js/main.js" -}}
+  {{- if eq hugo.Environment "development" -}}
+    {{- with . | js.Build -}}
+      <script src="{{- .RelPermalink -}}"></script>
+    {{- end -}}
+  {{- else -}}
+    {{- $opts := dict "minify" true -}}
+    {{- with . | js.Build $opts | fingerprint -}}
+      <script src="{{- .RelPermalink -}}" integrity="{{- .Data.Integrity -}}" crossorigin="anonymous"></script>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Load the KaTeX script */}}
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},
+        {left: '$$', right: '$$', display: true},
+        {left: '\\(', right: '\\)', display: false},
+        { left: '$', right: '$', display: false }
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+{{/* Load the Lunr search script */}}
+<script>
+  window.store = {
+    {{- range where .Site.Pages "Kind" "page" -}}
+    "{{- .Permalink -}}": {
+      "title": "{{- .Title -}}",
+      "content": {{- .Content | plainify | jsonify -}},
+      "url": "{{- .Permalink -}}",
+      "tags": [{{- range .Params.Tags -}}"{{- . -}}",{{- end -}}]
+    },
+    {{- end -}}
+  };
+
+  function displayResults(results, store) {
+    const searchResults = document.getElementById('results');
+    if (results.length) {
+      let resultList = '';
+      for (const n in results) {
+        const item = store[results[n].ref];
+        resultList += `
+          <li>
+            <h2><a href="${item.url}">${item.title}</a></h2>
+            <p>${item.content.substring(0, 150)}...</p>
+            <p>${item.tags.join(', ')}</p>
+          </li>
+        `;
+      }
+      searchResults.innerHTML = resultList;
+    } else {
+      searchResults.innerHTML = '<li>No results found.</li>';
+    }
+  }
+
+  function handleSearch(event) {
+    event.preventDefault();
+
+    const query = document.getElementById('search-input').value;
+
+    if (query) {
+      const idx = lunr(function () {
+        this.ref('id');
+        this.field('title', { boost: 15 });
+        this.field('tags');
+        this.field('content', { boost: 10 });
+
+        for (const key in window.store) {
+          this.add({
+            id: key,
+            title: window.store[key].title,
+            tags: window.store[key].tags,
+            content: window.store[key].content,
+          });
+        }
+      });
+
+      const results = idx.search(query);
+      displayResults(results, window.store);
+      document.getElementById('search-title').innerText = 'Search Results for ' + query;
+    }
+  }
+  const params = new URLSearchParams(window.location.search);
+  const query = params.get('query');
+
+  if (query) {
+    document.getElementById('search-input').setAttribute('value', query);
+    handleSearch(event);
+  }
+</script>

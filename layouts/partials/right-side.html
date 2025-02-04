@@ -1,14 +1,14 @@
 <header class="sidebar-header">
-  <div class="sidebar-header__top flex-justify-between">
+  <div class="sidebar-header__top justify-content-between">
     <button class="btn btn--icon btn--close" id="rightClose">
       <i class="bi bi-x"></i>
     </button>
     
-    <div class="word-count">Word Count: {{ .WordCount }}</div>
+    <div class="word-count">Word Count: {{- .WordCount -}}</div>
   </div>
   
-  <div class="sidebar-header__bottom flex-justify-between">
-    <div class="flex-justify-between">
+  <div class="sidebar-header__bottom justify-content-between">
+    <div class="justify-content-between">
       <select class="tab-select" data-tab-group="tab-group-2">
         <option value="tabToc">Table of Contents</option>
         <option value="tabRelated">Related</option>
@@ -28,7 +28,7 @@
       </select>
     </div>
     
-    <div class="sidebar-header__title">{{ .Title }}</div>
+    <div class="sidebar-header__title">{{- .Title -}}</div>
   </div>
 </header>
 
@@ -37,7 +37,7 @@
   class="nav__list nav__list-tab nav__list-tab--active" 
   data-tab="tabToc"
   data-tab-group="tab-group-2">
-    {{ .TableOfContents }}
+    {{- .TableOfContents -}}
   </div>
   
   <ul 
@@ -45,17 +45,17 @@
   data-tab="tabRelated" 
   data-tab-group="tab-group-2"
   >
-    {{ $related := .Site.RegularPages.Related . | first 20 }}
-    {{ with $related }}
-      {{ range . }}
+    {{- $related := .Site.RegularPages.Related . | first 20 -}}
+    {{- with $related -}}
+      {{- range . -}}
         <li class="nav__item">
-          <a class="nav__link" href="{{ .RelPermalink }}">
+          <a class="nav__link" href="{{- .RelPermalink -}}">
             <i class="nav__link-icon bi-link"></i>
-            <span class="nav__link-name">{{ .LinkTitle }}</span>
+            <span class="nav__link-name">{{- .LinkTitle -}}</span>
           </a>
         </li>
-      {{ end }}
-    {{ end }}
+      {{- end -}}
+    {{- end -}}
   </ul>
   
   <ul 
@@ -63,18 +63,18 @@
   data-tab="tabReferences"
   data-tab-group="tab-group-2"
   >
-    {{ range .Params.reference }}
+    {{- range .Params.reference -}}
     <li class="nav__item">
       <a 
       class="nav__link" 
-      href="{{ .url }}" 
+      href="{{- .url -}}" 
       target="_blank" 
       rel="noopener noreferrer"
       >
         <i class="nav__link-icon bi-link-45deg"></i>
-        <span class="nav__link-name">{{ .name }}</span>
+        <span class="nav__link-name">{{- .name -}}</span>
       </a>
     </li>
-    {{ end }}
+    {{- end -}}
   </ul>
 </nav>

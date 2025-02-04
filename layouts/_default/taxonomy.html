@@ -1,0 +1,24 @@
+{{- define "main" -}}
+<article class="page">
+  <header class="page__header">
+    <h1 class="page__title">{{- .Title -}}</h1>
+  </header>
+  
+  <section class="page__content" id="contentArticle">
+    {{- .Content -}}
+  </section>
+
+  <nav class="nav">
+    <ul class="nav__list">
+      {{- range .Data.Terms.Alphabetical -}}
+        <li class="nav__item">
+          <a class="nav__link" href="{{- .Page.RelPermalink -}}">
+            <span class="nav__link-name">{{- .Page.LinkTitle -}}</span>
+          </a>
+          <span class="nav__item-name">({{- .Count -}})</span>
+        </li>
+      {{- end -}}
+    </ul>
+  </nav>
+</article>
+{{- end -}}

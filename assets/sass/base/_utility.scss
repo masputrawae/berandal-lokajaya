@@ -1,0 +1,6 @@
+@use '../abstract/mixins' as m;
+@use '../abstract/breakpoint' as bp;
+
+.justify-content-between {
+    @include m.flex-justify(space-between, center);
+}

@@ -1,0 +1,37 @@
+@use '../abstract/variables' as v;
+@use '../abstract/color' as clr;
+
+// EACH
+:root {
+    @each $name, $value in clr.$colors {
+        --#{$name}: #{$value};
+    }
+
+    @each $name, $value in v.$font-family {
+        --font-#{$name}: #{$value};
+    }
+    
+    @each $name, $value in v.$font-size {
+        --fs-#{$name}: #{$value};
+    }
+
+    @each $name, $value in v.$spacing {
+        --spacing-#{$name}: #{$value};
+    }
+
+    @each $name, $value in v.$border {
+        --border-#{$name}: #{$value};
+    }
+
+    @each $name, $value in v.$border-radius {
+        --border-radius-#{$name}: #{$value};
+    }
+}
+
+@each $theme, $vars in clr.$themes {
+    :root[data-theme=#{$theme}] {
+    @each $name, $value in $vars {
+        --#{$name}: #{$value};
+        }
+    }
+}

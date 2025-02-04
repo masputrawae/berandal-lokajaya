@@ -1,19 +1,19 @@
 <header class="sidebar-header">
-  <div class="sidebar-header__top flex-justify-between">
-    <a class="logo flex-justify-between" href="{{ .Site.BaseURL }}">
+  <div class="sidebar-header__top justify-content-between">
+    <a class="logo justify-content-between" href="{{- .Site.BaseURL -}}">
       <img 
       class="logo__img" 
       src="https://picsum.photos/50" 
-      alt="Logo {{ .Site.Title }}"
+      alt="Logo {{- .Site.Title -}}"
       >
-      <div class="logo__title">{{ .Site.Title }}</div>
+      <div class="logo__title">{{- .Site.Title -}}</div>
     </a>
     
     <button class="btn btn--icon btn--close" id="leftClose">
       <i class="bi bi-x"></i>
     </button>
   </div>
-  <div class="sidebar-header__bottom flex-justify-between">
+  <div class="sidebar-header__bottom justify-content-between">
     <select class="tab-select" data-tab-group="tab-group-1">
       <option value="tabFiles">Files</option>
       <option value="tabCategories">Categories</option>
@@ -34,7 +34,7 @@
   data-tab="tabFiles"
   data-tab-group="tab-group-1"
   >
-    {{ template "collapsible_nav" .Site.Home }}
+    {{- template "collapsible_nav" .Site.Home -}}
   </ul>
   
   <ul 
@@ -42,7 +42,7 @@
   data-tab="tabCategories" 
   data-tab-group="tab-group-1"
   >
-    {{ template "categories_list" . }}
+    {{- template "categories_list" . -}}
   </ul>
   
   <ul 
@@ -50,7 +50,7 @@
   data-tab="tabTags" 
   data-tab-group="tab-group-1"
   >
-    {{ template "tags_list" . }}
+    {{- template "tags_list" . -}}
   </ul>
   
   <ul 
@@ -58,7 +58,7 @@
   data-tab="tabPinned"
   data-tab-group="tab-group-1"
   >
-    {{ template "pinned_list" . }}
+    {{- template "pinned_list" . -}}
   </ul>
   
   <ul 
@@ -66,6 +66,6 @@
   data-tab="tabGroups"
   data-tab-group="tab-group-1"
   >
-    {{ template "groups_list" . }}
+    {{- template "groups_list" . -}}
   </ul>
 </nav>

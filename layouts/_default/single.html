@@ -1,45 +1,86 @@
-{{ define "main" }}
-<header class="page-header">
-  <h1 class="page-header__title">{{ .Title }}</h1>
-  <p class="page-header__subtitle">{{ .Params.subtitle }}</p>
-</header>
+{{- define "main" -}}
+<article class="content">
+  <header class="content__header">
+    <h1 class="content__title">{{- .Title -}}</h1>
+    <p class="content__description">{{- .Params.description -}}</p>
 
-<article>
-  <section class="page-article" id="contentArticle">
-    {{ .Content }}
+    {{- with .Date -}}
+      {{- $dateMachine := . | time.Format "2006-01-02T15:04:05-07:00" -}}
+      {{- $dateHuman := . | time.Format ":date_long" -}}
+      <p class="content__time">
+        Publish on: 
+        <time datetime="{{- $dateMachine -}}">{{- $dateHuman -}}</time>
+        <strong>By</strong> {{- $.Params.author | default $.Site.Params.author -}}
+      </p>
+    {{- end -}}
+  </header>
+
+  <section class="content__article" id="contentArticle">
+    {{- .Content -}}
   </section>
-</article>
 
-<div class="page-pagination">
-  {{ $pages := site.RegularPages }}
-  {{ $paginator := .Paginate $pages }}
-  {{ range $paginator.Pages }}
-    <div class="card">
-      <img 
-      class="card__image"
-      src="{{ .Params.thumbnail }}"
-      alt="Thumbnail image for the post titled {{ .Title }}"
-      >
-      <div class="card__content">
-        <h2 class="card__title">{{ .Title }}</h2>
-        <p class="card__excerpt">{{ .Params.excerpt }}</p>
-        <p class="card__time">
-          <time datetime="{{ .Date.Format "2006-01-02" }}">
-            {{ .Date.Format "January 2, 2006" }}
-          </time>
-        </p>
-        <div class="card__button">
-          <a class="btn btn--read-more" href="{{ .RelPermalink }}">
-            <i class="bi bi-arrow-right"></i>
-            <span>Read More</span>
-          </a>
-        </div>
+  <footer class="content__footer">
+    <nav class="nav">
+      <div class="nav__tag">
+        {{- with .GetTerms "tags" -}}
+          <div class="nav__label">{{- (index . 0).Parent.LinkTitle -}}</div>
+          <ul class="nav__list">
+            {{- range . -}}
+              <li class="nav__item">
+                <a class="nav__link" href="{{- .RelPermalink -}}">
+                  <span class="nav__link-name">{{- .LinkTitle -}}</span>
+                </a>
+              </li>
+            {{- end -}}
+          </ul>
+        {{- end -}}
       </div>
-    </div>
-  {{ end }}
-  
-  <nav class="nav nav--pagination">
-    {{ template "_internal/pagination.html" . }}
-  </nav>
-</div>
-{{ end }}
+
+      <div class="nav__categories">
+        {{- with .GetTerms "categories" -}}
+          <div class="nav__label">{{- (index . 0).Parent.LinkTitle -}}</div>
+          <ul class="nav__list">
+            {{- range . -}}
+              <li class="nav__item">
+                <a class="nav__link" href="{{- .RelPermalink -}}">
+                  <span class="nav__link-name">{{- .LinkTitle -}}</span>
+                </a>
+              </li>
+            {{- end -}}
+          </ul>
+        {{- end -}}
+      </div>
+
+      <div class="nav__group">
+        {{- with .GetTerms "group" -}}
+          <div class="nav__label">{{- (index . 0).Parent.LinkTitle -}}</div>
+          <ul class="nav__list">
+            {{- range . -}}
+              <li class="nav__item">
+                <a class="nav__link" href="{{- .RelPermalink -}}">
+                  <span class="nav__link-name">{{- .LinkTitle -}}</span>
+                </a>
+              </li>
+            {{- end -}}
+          </ul>
+        {{- end -}}
+      </div>
+
+      <div class="nav--pagination">
+        {{- with .PrevInSection -}}
+          <a class="nav__link" href="{{- .RelPermalink -}}">
+            <i class="nav__link-icon bi-chevron-left"></i>
+            <span class="nav__link-name">{{- .Title -}}</span>
+          </a>
+        {{- end -}}
+        {{- with .NextInSection -}}
+          <a class="nav__link" href="{{- .RelPermalink -}}">
+            <span class="nav__link-name">{{- .Title -}}</span>
+            <i class="nav__link-icon bi-chevron-right"></i>
+          </a>
+        {{- end -}}
+      </div>
+    </nav>
+  </footer>
+</article>
+{{- end -}}
