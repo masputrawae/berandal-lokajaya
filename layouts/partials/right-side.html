@@ -1,78 +1,54 @@
-<header class="sidebar-header position-sticky">
-  <div class="sidebar-header__top justify-content-between">
-    <button class="btn btn--icon btn--close" id="rightClose">
-      <i class="bi bi-x"></i>
-    </button>
-    
-    <div class="word-count">Word Count: {{- .WordCount -}}</div>
-  </div>
-  <div class="sidebar-header__title">{{- .Title -}}</div>
-  <div class="sidebar-header__bottom justify-content-between">
-    <div class="justify-content-between">
-      <select class="tab-select" data-tab-group="tab-group-2">
-        <option value="tabToc">Table of Contents</option>
-        <option value="tabRelated">Related</option>
-        <option value="tabReferences">References</option>
-      </select>
-      
-      <select class="font-adjustment" id="fontAdjustment">
-        <option value="10">10px</option>
-        <option value="11">11px</option>
-        <option value="12">12px</option>
-        <option value="13">13px</option>
-        <option value="14">14px</option>
-        <option value="15">15px</option>
-        <option value="16">16px</option>
-        <option value="17">17px</option>
-        <option value="18">18px</option>
-      </select>
-    </div>  
-  </div>
-</header>
-
-<nav class="nav">
-  <div 
-  class="nav__list nav__list-tab nav__list-tab--active" 
-  data-tab="tabToc"
-  data-tab-group="tab-group-2">
-    {{- .TableOfContents -}}
-  </div>
+<aside class="sidebar sidebar--right">
+  <header class="sidebar__header">
+    <div class="sidebar__header-container">
+      <div class="sidebar__title sidebar__title--small">{{ .Title }}</div>
+      <button class="sidebar__button" id="rightClose">
+        <i class="bi bi-x"></i>
+      </button>
+    </div>
+  </header>
   
-  <ul 
-  class="nav__list nav__list-tab" 
-  data-tab="tabRelated" 
-  data-tab-group="tab-group-2"
-  >
+  <nav class="menu-right">
     {{- $related := .Site.RegularPages.Related . | first 20 -}}
-    {{- with $related -}}
-      {{- range . -}}
-        <li class="nav__item">
-          <a class="nav__link" href="{{- .RelPermalink -}}">
-            <i class="nav__link-icon bi-link"></i>
-            <span class="nav__link-name">{{- .LinkTitle -}}</span>
-          </a>
-        </li>
-      {{- end -}}
+    {{- if $related -}}
+      <strong class="menu-right__title">Related:</strong>
+      <ul class="menu-right__list">
+        {{- range $related -}}
+          <li class="menu-right__item">
+
+            <a class="menu-right__link" href="{{ .RelPermalink }}">
+              <div class="menu-right__card">
+                <i class="bi bi-link"></i>
+                <span>{{ .LinkTitle }}</span>
+              </div>
+            </a>
+            
+          </li>
+        {{- end -}}
+      </ul>
+    {{- else -}}
+      <strong class="menu-right__title">Pinned:</strong>
+      <ul class="menu-right__list">
+        {{- range where .Site.RegularPages "Params.pinned" true -}}
+          <li class="menu-right__item">
+
+            <a class="menu-right__link" href="{{ .RelPermalink }}">
+              <div class="menu-right__card">
+                <i class="bi bi-pin"></i>
+                <span>{{ .LinkTitle }}</span>
+              </div>
+            </a>
+
+          </li>
+        {{- end -}}
+      </ul>
     {{- end -}}
-  </ul>
-  
-  <ul 
-  class="nav__list nav__list-tabs"
-  data-tab="tabReferences"
-  data-tab-group="tab-group-2"
-  >
-    {{- range .Params.reference -}}
-    <li class="nav__item">
-      <a 
-      class="nav__link" 
-      href="{{- .url -}}" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      >
-        <i class="nav__link-icon bi-link-45deg"></i>
-        <span class="nav__link-name">{{- .name -}}</span>
-      </a>
-    </li>
-    {{- end -}}
-  </ul>
-</nav>
+    
+    <div class="menu-right__toc" id="tableOfContents">
+      <strong class="menu-right__title">On This Page</strong>
+      <ul>
+        {{ .TableOfContents }}
+      </ul>
+    </div>
+  </nav>
+</aside>

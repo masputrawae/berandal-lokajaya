@@ -1,45 +1,70 @@
 {{- define "main" -}}
-<header class="page-header">
-  <h1 class="page-header__title">{{- .Title -}}</h1>
-  <p class="page-header__subtitle">{{- .Params.subtitle -}}</p>
+<header class="main-header">
+  <h1>{{ .Title }}</h1>
 </header>
 
-<article>
-  <section class="page-article" id="contentArticle">
-    {{- .Content -}}
-  </section>
+<article class="main-content">
+  {{- .Content -}}
 </article>
 
-<div class="page-pagination">
-  {{- $pages := site.RegularPages -}}
-  {{- $paginator := .Paginate $pages -}}
-  {{- range $paginator.Pages -}}
-    <div class="card">
+<div class="card-container">
+  {{ range .Paginator.Pages }}
+    <article class="card">
       <img 
-      class="card__image"
-      src="{{- .Params.thumbnail -}}"
-      alt="Thumbnail image for the post titled {{- .Title -}}"
-      >
-      <div class="card__content">
-        <h2 class="card__title">{{- .Title -}}</h2>
-        <p class="card__excerpt">{{- .Params.excerpt -}}</p>
-        <p class="card__time">
-          <time datetime="{{- .Date.Format "2006-01-02" -}}">
-            {{- .Date.Format "January 2, 2006" -}}
-          </time>
-        </p>
-        <div class="card__button">
-          <a class="btn btn--read-more" href="{{- .RelPermalink -}}">
-            <i class="bi bi-arrow-right"></i>
-            <span>Read More</span>
+      class="card__img" 
+      src="{{ .Params.thumbnail }}" 
+      alt="{{ .Title }}" 
+      loading="lazy">
+      <section class="card__content">
+        <h2 class="card__title">{{ .Title }}</h2>
+        <p class="card__excerpt">{{ .Summary | plainify | truncate 150 }}</p>
+        <a class="card__button" href="{{ .RelPermalink }}">Read more</a>
+      </section>
+    </article>
+  {{ end }}
+</div>
+
+<nav aria-label="pagination">
+  {{ template "_internal/pagination.html" . }}
+</nav>
+
+<div class="tag-cloud">
+  <nav class="tag-cloud__container">
+    <h3 class="tag-cloud__title">Tags</h3>
+    <ul class="tag-cloud__list">
+      {{- $tags := .Site.Taxonomies.tags -}}
+      {{- $tagCounts := slice -}}
+      {{- range $tag, $pages := $tags -}}
+        {{- $tagCounts = $tagCounts | append (dict "name" $tag "count" (len $pages)) -}}
+      {{- end -}}
+      {{- $shuffledTags := shuffle $tagCounts -}}
+      {{- range $shuffledTags }}
+        <li class="tag-cloud__item">
+          <a class="tag-cloud__link" data-weight="{{- .count -}}" href="{{- "tags/" | relURL -}}{{- .name | urlize -}}">
+            {{- .name -}} ({{- .count -}})
           </a>
-        </div>
-      </div>
-    </div>
-  {{- end -}}
+        </li>
+      {{- end }}
+    </ul>
+  </nav>
   
-  <nav class="nav nav--pagination">
-    {{- template "_internal/pagination.html" . -}}
+  <nav class="tag-cloud__container">
+    <h3 class="tag-cloud__title">Categories</h3>
+    <ul class="tag-cloud__list">
+      {{- $categories := .Site.Taxonomies.categories -}}
+      {{- $categoryCounts := slice -}}
+      {{- range $category, $pages := $categories -}}
+        {{- $categoryCounts = $categoryCounts | append (dict "name" $category "count" (len $pages)) -}}
+      {{- end -}}
+      {{- $shuffledCategories := shuffle $categoryCounts -}}
+      {{- range $shuffledCategories }}
+        <li class="tag-cloud__item">
+          <a class="tag-cloud__link" data-weight="{{- .count -}}" href="{{- "categories/" | relURL -}}{{- .name | urlize -}}">
+            {{- .name -}} ({{- .count -}})
+          </a>
+        </li>
+      {{- end }}
+    </ul>
   </nav>
 </div>
 {{- end -}}

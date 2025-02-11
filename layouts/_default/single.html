@@ -1,86 +1,54 @@
 {{- define "main" -}}
-<article class="content">
-  <header class="content__header">
-    <h1 class="content__title">{{- .Title -}}</h1>
-    <p class="content__description">{{- .Params.description -}}</p>
+<header class="main-header">
+  <h1>{{ .Title }}</h1>
+</header>
 
-    {{- with .Date -}}
-      {{- $dateMachine := . | time.Format "2006-01-02T15:04:05-07:00" -}}
-      {{- $dateHuman := . | time.Format ":date_long" -}}
-      <p class="content__time">
-        Publish on: 
-        <time datetime="{{- $dateMachine -}}">{{- $dateHuman -}}</time>
-        <strong>By</strong> {{- $.Params.author | default $.Site.Params.author -}}
-      </p>
-    {{- end -}}
-  </header>
-
-  <section class="content__article" id="contentArticle">
-    {{- .Content -}}
-  </section>
-
-  <footer class="content__footer">
-    <nav class="nav">
-      <div class="nav__tag">
-        {{- with .GetTerms "tags" -}}
-          <div class="nav__label">{{- (index . 0).Parent.LinkTitle -}}</div>
-          <ul class="nav__list">
-            {{- range . -}}
-              <li class="nav__item">
-                <a class="nav__link" href="{{- .RelPermalink -}}">
-                  <span class="nav__link-name">{{- .LinkTitle -}}</span>
-                </a>
-              </li>
-            {{- end -}}
-          </ul>
-        {{- end -}}
-      </div>
-
-      <div class="nav__categories">
-        {{- with .GetTerms "categories" -}}
-          <div class="nav__label">{{- (index . 0).Parent.LinkTitle -}}</div>
-          <ul class="nav__list">
-            {{- range . -}}
-              <li class="nav__item">
-                <a class="nav__link" href="{{- .RelPermalink -}}">
-                  <span class="nav__link-name">{{- .LinkTitle -}}</span>
-                </a>
-              </li>
-            {{- end -}}
-          </ul>
-        {{- end -}}
-      </div>
-
-      <div class="nav__group">
-        {{- with .GetTerms "group" -}}
-          <div class="nav__label">{{- (index . 0).Parent.LinkTitle -}}</div>
-          <ul class="nav__list">
-            {{- range . -}}
-              <li class="nav__item">
-                <a class="nav__link" href="{{- .RelPermalink -}}">
-                  <span class="nav__link-name">{{- .LinkTitle -}}</span>
-                </a>
-              </li>
-            {{- end -}}
-          </ul>
-        {{- end -}}
-      </div>
-
-      <div class="nav--pagination">
-        {{- with .PrevInSection -}}
-          <a class="nav__link" href="{{- .RelPermalink -}}">
-            <i class="nav__link-icon bi-chevron-left"></i>
-            <span class="nav__link-name">{{- .Title -}}</span>
-          </a>
-        {{- end -}}
-        {{- with .NextInSection -}}
-          <a class="nav__link" href="{{- .RelPermalink -}}">
-            <span class="nav__link-name">{{- .Title -}}</span>
-            <i class="nav__link-icon bi-chevron-right"></i>
-          </a>
-        {{- end -}}
-      </div>
-    </nav>
-  </footer>
+<article class="main-content">
+  {{- .Content | safeHTML -}}
 </article>
+
+<nav>
+  <strong>Tags:</strong>
+  <ul class="list">
+    {{- with .Params.tags -}}
+    {{- range . -}}
+    <li class="content__nav-item">
+      <a class="content__nav-link" href="{{- "tags/" | relURL -}}{{- . | urlize -}}">{{- . -}}</a>
+    </li>
+    {{- end -}}
+    {{- end -}}
+  </ul>
+  
+  <strong>Categories:</strong>
+  <ul class="content__nav-list">
+    {{- with .Params.categories -}}
+    {{- range . -}}
+    <li class="content__meta-item">
+      <a class="content__meta-link" href="{{- "categories/" | relURL -}}{{- . | urlize -}}">{{- . -}}</a>
+    </li>
+    {{- end -}}
+    {{- end -}}
+  </ul>
+</nav>
+
+<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    if (window.MathJax) {
+      MathJax.typesetPromise();
+    }
+  });
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)']],  // Inline math
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  // Block math
+    },
+    svg: {
+      fontCache: 'global' // Menggunakan cache untuk mempercepat rendering
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'], // Mencegah konflik dengan tag lain
+    }
+  };
+</script>
 {{- end -}}

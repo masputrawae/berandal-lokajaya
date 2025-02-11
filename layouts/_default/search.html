@@ -1,0 +1,98 @@
+{{- define "main" -}}
+<header class="main-header">
+  <h1>{{ .Title }}</h1>
+</header>
+
+<form 
+class="search" 
+id="search" 
+onsubmit="handleSearch(event)" 
+method="get">
+  <input 
+  class="search__input" 
+  type="text" 
+  id="search-input" 
+  name="query" 
+  placeholder="🔍 Type here to search">
+    <button class="search__button" type="submit">
+      <i class="bi bi-search"></i>
+    </button>
+</form>
+
+<ul id="results"></ul>
+
+<script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script>
+<script defer>
+  document.addEventListener("DOMContentLoaded", function () {
+    window.store = {
+      {{- range where .Site.Pages "Kind" "page" -}}
+      "{{- .Permalink -}}": {
+        "title": "{{- .Title -}}",
+        "content": {{- .Summary | plainify | jsonify -}},
+        "url": "{{- .Permalink -}}",
+        "tags": [{{- range .Params.Tags -}}"{{- . -}}",{{- end -}}]
+      },
+      {{- end -}}
+    };
+
+    let idx = lunr(function () {
+      this.ref('id');
+      this.field('title', { boost: 15 });
+      this.field('tags');
+      this.field('content', { boost: 10 });
+
+      for (const key in window.store) {
+        this.add({
+          id: key,
+          title: window.store[key].title,
+          tags: window.store[key].tags,
+          content: window.store[key].content,
+        });
+      }
+    });
+
+    function displayResults(results) {
+      const searchResults = document.getElementById('results');
+      searchResults.innerHTML = results.length
+        ? results.map(result => {
+            const item = window.store[result.ref];
+            return `
+              <li>
+                <h2><a href="${item.url}">${item.title}</a></h2>
+                <p>${item.content.substring(0, 150)}...</p>
+                <p>${item.tags.join(', ')}</p>
+              </li>`;
+          }).join('')
+        : '<li>No results found.</li>';
+    }
+
+    function handleSearch(event) {
+      if (event) event.preventDefault();
+      const query = document.getElementById('search-input').value;
+      if (query) {
+        const results = idx.search(query);
+        displayResults(results);
+      }
+    }
+
+    function debounce(func, wait = 300) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
+
+    document.getElementById('search-input').addEventListener('input', debounce(() => {
+      handleSearch(new Event('submit'));
+    }, 500));
+
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get('query');
+    if (query) {
+      document.getElementById('search-input').setAttribute('value', query);
+      setTimeout(() => handleSearch(new Event('submit')), 100);
+    }
+  });
+</script>
+{{- end -}}

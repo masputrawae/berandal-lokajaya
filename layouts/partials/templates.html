@@ -1,0 +1,46 @@
+<!-- TEMPLATES -->
+{{- define "collapsible_nav" -}}
+  {{- if .Pages -}}
+    {{- range .Pages -}}
+      {{- if .IsSection -}}
+
+        <!-- ==================== -->
+        <li class="menu-left__item menu-left__item--folder" data-id="{{- .RelPermalink | urlize -}}">
+          <button class="menu-left__button menu-left__button--collapse">
+            <i class="bi bi-folder2"></i>
+            <span>{{- .LinkTitle -}}</span>
+          </button>
+          <ul class="menu-left__list menu-left__list--collapse">
+            {{- template "collapsible_nav" . -}}
+          </ul>
+        </li>
+        <!-- ==================== -->
+
+      {{- else if .IsPage -}}
+        {{- if ne .File.BaseFileName "search" -}}
+          <li class="menu-left__item menu-left__item--file" data-id="{{- .RelPermalink | urlize -}}">
+            <a class="menu-left__link" href="{{- .RelPermalink -}}">
+              <i class="bi bi-file-earmark-text"></i>
+              <span>{{- .LinkTitle -}}</span>
+            </a>
+          </li>
+        {{- end -}}
+      {{- end -}}
+      
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<!-- TEMPLATES -->
+
+{{- define "archives" -}}
+<ul>
+  {{- range .Site.RegularPages.GroupByDate "2006" -}}
+      <h2>{{- .Key -}}</h2>
+      <ul>
+          {{- range .Pages -}}
+              <li><a href="{{- .RelPermalink -}}">{{- .Title -}}</a> - {{- .Date.Format "Jan 2, 2006" -}}</li>
+          {{- end -}}
+      </ul>
+  {{- end -}}
+</ul>
+{{- end -}}

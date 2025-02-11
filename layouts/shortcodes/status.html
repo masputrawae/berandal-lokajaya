@@ -1,0 +1,14 @@
+{{- $status := .Get "status" | default "info" -}}
+{{- $title := .Get "title" | default (title $status) -}}
+{{- $icons := dict "info" "bi-info-circle" "tips" "bi-lightbulb" "warning" "bi-exclamation-triangle" "danger" "bi-exclamation-octagon" "error" "bi-x-circle" -}}
+{{- $icon := index $icons $status -}}
+
+<div class="card card--{{ $status }}">
+    <div class="card__header">
+        <i class="bi {{ $icon }}"></i>
+        <strong class="card__title">{{ $title }}</strong>
+    </div>
+    <div class="card__content">
+        {{ .Inner | markdownify }}
+    </div>
+</div>

@@ -1,71 +1,36 @@
-<header class="sidebar-header position-sticky">
-  <div class="sidebar-header__top justify-content-between">
-    <a class="logo justify-content-between" href="{{- .Site.BaseURL -}}">
-      <img 
-      class="logo__img" 
-      src="https://picsum.photos/50" 
-      alt="Logo {{- .Site.Title -}}"
-      >
-      <div class="logo__title">{{- .Site.Title -}}</div>
-    </a>
-    
-    <button class="btn btn--icon btn--close" id="leftClose">
-      <i class="bi bi-x"></i>
-    </button>
-  </div>
-  <div class="sidebar-header__bottom justify-content-between">
-    <select class="tab-select" data-tab-group="tab-group-1">
-      <option value="tabFiles">Files</option>
-      <option value="tabCategories">Categories</option>
-      <option value="tabTags">Tags</option>
-      <option value="tabPinned">Pinned</option>
-      <option value="tabGroups">Groups</option>
-    </select>
-    
-    <button class="btn btn--icon" id="collapseAll">
-      <i class="bi bi-folder2"></i>
-    </button>
-  </div>
-</header>
+<aside class="sidebar sidebar--left">
+  <header class="sidebar__header">
+    <div class="sidebar__header-container">
+      <a class="sidebar__title" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+      <div class="sidebar__actions">
 
-<nav class="nav">
-  <ul 
-  class="nav__list nav__list-tab nav__list-tab--active"
-  data-tab="tabFiles"
-  data-tab-group="tab-group-1"
-  >
-    {{- template "collapsible_nav" .Site.Home -}}
-  </ul>
+        <button class="sidebar__button" aria-label="Go to Search Pages" onclick="window.location.href='{{ "search/" | relURL }}'">
+          <i class="bi bi-search"></i>
+        </button>
+
+        <button class="sidebar__button" aria-label="Go to Home" onclick="window.location.href='{{ .Site.BaseURL }}'">
+          <i class="bi bi-house"></i>
+        </button>
+
+        <button class="sidebar__button" id="switchTheme" aria-label="Switch themes Dark/Light">
+          <i class="bi bi-moon"></i>
+        </button>
+
+        <button class="sidebar__button" id="leftClose" aria-label="Close Sidebar Left" >
+          <i class="bi bi-x"></i>
+        </button>
+        
+      </div>
+    </div>
+  </header>
   
-  <ul 
-  class="nav__list nav__list-tab" 
-  data-tab="tabCategories" 
-  data-tab-group="tab-group-1"
-  >
-    {{- template "categories_list" . -}}
-  </ul>
-  
-  <ul 
-  class="nav__list nav__list-tab"
-  data-tab="tabTags" 
-  data-tab-group="tab-group-1"
-  >
-    {{- template "tags_list" . -}}
-  </ul>
-  
-  <ul 
-  class="nav__list nav__list-tab"
-  data-tab="tabPinned"
-  data-tab-group="tab-group-1"
-  >
-    {{- template "pinned_list" . -}}
-  </ul>
-  
-  <ul 
-  class="nav__list nav__list-tab"
-  data-tab="tabGroups"
-  data-tab-group="tab-group-1"
-  >
-    {{- template "groups_list" . -}}
-  </ul>
-</nav>
+  <nav class="menu-left">
+    <button class="menu-left__button" id="toggleCollapseAll">
+      <i class="bi bi-folder2"></i>
+      <span>Root</span>
+    </button>
+    <ul class="menu-left__list">
+      {{- template "collapsible_nav" .Site.Home -}}
+    </ul>
+  </nav>
+</aside>

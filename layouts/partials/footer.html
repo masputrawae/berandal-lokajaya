@@ -1,7 +1,18 @@
-<nav class="nav justify-content-between">
-  {{- range site.Params.social -}}
-    <a class="nav__link" id="{{- .name -}}" href="{{- .url -}}" target="_blank">
-      <i class="{{- .icon -}}"></i> {{- .name | title -}}
-    </a>
-  {{- end -}}
-</nav>
+<footer class="footer">
+  <nav>
+    <ul class="list list--flex">
+      {{ range .Site.Params.socialMedia }}
+        <li class="list__item">
+          <a class="list__link" href="{{ .url }}" target="_blank" rel="noopener">
+            <i class="bi {{ .icon }}"></i>
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+  
+  <div class="copyright">
+    <p>Made with ♥️ using <a href="https://gohugo.io" class="footer__link" target="_blank" rel="noopener">Hugo</a></p>
+    <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
+  </div>
+</footer>

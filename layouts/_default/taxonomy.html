@@ -1,24 +1,15 @@
 {{- define "main" -}}
-<article class="page">
-  <header class="page__header">
-    <h1 class="page__title">{{- .Title -}}</h1>
-  </header>
-  
-  <section class="page__content" id="contentArticle">
-    {{- .Content -}}
-  </section>
+<header class="main-header">
+  <h1>Posts with Category: {{- .Title -}}</h1>
+</header>
 
-  <nav class="nav">
-    <ul class="nav__list">
-      {{- range .Data.Terms.Alphabetical -}}
-        <li class="nav__item">
-          <a class="nav__link" href="{{- .Page.RelPermalink -}}">
-            <span class="nav__link-name">{{- .Page.LinkTitle -}}</span>
-          </a>
-          <span class="nav__item-name">({{- .Count -}})</span>
-        </li>
-      {{- end -}}
-    </ul>
-  </nav>
-</article>
+<nav>
+  <ul class="list">
+    {{- range .Pages -}}
+    <li class="list__item">
+      <a class="list__link" href="{{- .Permalink -}}">{{- .Title -}}</a>
+    </li>
+    {{- end -}}
+  </ul>
+</nav>
 {{- end -}}

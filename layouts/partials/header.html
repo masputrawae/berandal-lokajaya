@@ -1,34 +1,11 @@
-<div class="header__left justify-content-between">
-  <button class="btn btn--icon btn--open" id="leftOpen">
+<header class="site-header">
+  <button class="site-header__button" id="leftOpen" aria-label="Open Left Sidebar">
     <i class="bi bi-list"></i>
   </button>
   
-  <a class="site-title" href="">{{- .Site.Title -}}</a>
+  <a class="site-header__title" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
   
-  <nav class="nav nav--breadcrumb" aria-label="breadcrumbs">
-    <ul class="nav__list justify-content-center">
-      {{- range .Ancestors.Reverse -}}
-        <li class="nav__item">
-          <a class="nav__link" href="{{- .RelPermalink -}}">{{- .Title -}}</a>
-        </li>
-      {{- end -}}
-      <li class="nav__item">
-        <a class="nav__link nav__link--active" href="{{- .RelPermalink -}}">{{- .Title -}}</a>
-      </li>
-    </ul>
-  </nav>
-</div>
-
-<div class="header__right justify-content-between">
-  <button class="btn btn--icon">
-    <i class="bi bi-search"></i>
-  </button>
-  
-  <button class="btn btn--icon" id="switchTheme">
-    <i class="bi bi-moon"></i>
-  </button>
-  
-  <button class="btn btn--icon" id="rightOpen">
+  <button class="site-header__button" id="rightOpen" aria-label="Open Right Sidebar">
     <i class="bi bi-book"></i>
   </button>
-</div>
+</header>
