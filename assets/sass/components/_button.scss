@@ -1,0 +1,41 @@
+@use "../abstract/breakpoints" as bp;
+@use "../abstract/mixins" as m;
+
+.btn {
+    color: var(--cl-accent);
+    transition: color 0.3s ease-in-out;
+
+    &--nav {
+        text-align: start;
+        width: 100%;
+        color: var(--cl-text);
+
+        .bi {color: var(--cl-accent);}
+    }
+    &--icon {
+        @include m.shadow;
+        @include m.width-height(2.25rem, 2.25rem);
+        border: var(--border-1) solid var(--cl-border);
+        border-radius: var(--size-1);
+        
+        .bi {
+            font-size: var(--fs-xl);
+        }
+    }
+    
+    &--offcanvas {
+        font-size: var(--fs-7xl);
+    }
+
+    &:hover {
+        color: var(--link-hover);
+    }
+
+    &:active {
+        color: var(--link-active);
+    }
+
+    &:focus-visible {
+        color: var(--link-focus);
+    }
+}

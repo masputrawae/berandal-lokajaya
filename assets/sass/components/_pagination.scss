@@ -1,0 +1,40 @@
+@use '../abstract/mixins' as m;
+
+.main-pagination {
+    @include m.flex-justify(center, center);
+    margin-top: var(--size-5);
+    margin-bottom: var(--size-5);
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    gap: var(--size-2);
+    padding: 0;
+}
+
+.page-item {
+    &.active .page-link {
+        background-color: var(--bg-highlight);
+        color: var(--bg-default);
+        font-weight: bold;
+    }
+
+    .page-link {
+        @include m.flex-justify(center, center);
+        @include m.shadow;
+        padding: var(--size-2) var(--size-3);
+        border-radius: var(--size-1);
+        text-decoration: none;
+        background-color: var(--bg-alt);
+        color: var(--cl-text);
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: var(--cl-highlight);
+            text-decoration: none;
+            color: var(--bg-default);
+        }
+    }
+}
+  

@@ -1,8 +1,9 @@
 @use '../abstract/breakpoints' as bp;
 @use '../abstract/mixins' as m;
 
+// SITE HEADER
 .site-header {
-    @include m.flex-justify(space-between, center, 0);
+    @include m.flex-justify(space-between, center);
     @include m.sticky-top();
     padding: var(--size-3);
     max-height: 4rem;
@@ -10,16 +11,6 @@
 
     background-color: var(--bg-default);
     border-bottom: var(--border-1) solid var(--cl-border);
-
-    &__button {
-        padding: var(--size-3) var(--size-2);
-        color: var(--cl-btn);
-
-        .bi {
-            @include m.flex-justify(center, center, 0);
-            font-size: var(--fs-7xl);
-        }
-    }
 
     &__title {
         font-family: var(--font-title);
@@ -29,5 +20,14 @@
 
     @include bp.min-width(lg){
         display: none;
+    }
+}
+
+// CONTENT HEADER
+.main-header{
+    h1 {font-size: var(--fs-7xl);}
+    @include bp.min-width(lg){
+        background-color: var(--bg-alt);
+        @include m.flex-justify(center, center);
     }
 }

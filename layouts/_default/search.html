@@ -16,11 +16,12 @@ method="get">
   placeholder="🔍 Type here to search">
 </form>
 
-<ul id="results"></ul>
+<ul class="nav__list" id="results"></ul>
 
 <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script>
 <script defer>
   document.addEventListener("DOMContentLoaded", function () {
+    // Pastikan store tidak ada trailing koma
     window.store = {
       {{- range where .Site.Pages "Kind" "page" -}}
       "{{- .Permalink -}}": {
@@ -42,22 +43,27 @@ method="get">
         this.add({
           id: key,
           title: window.store[key].title,
-          tags: window.store[key].tags,
+          tags: window.store[key].tags.join(", "), // Menggabungkan tags agar bisa dicari lebih akurat
           content: window.store[key].content,
         });
       }
     });
 
-    function displayResults(results) {
+    function displayResults(results, query) {
       const searchResults = document.getElementById('results');
       searchResults.innerHTML = results.length
         ? results.map(result => {
             const item = window.store[result.ref];
+            let highlightedContent = highlightText(item.content.substring(0, 150), query);
+            let highlightedTitle = highlightText(item.title, query);
+            
             return `
-              <li>
-                <h2><a href="${item.url}">${item.title}</a></h2>
-                <p>${item.content.substring(0, 150)}...</p>
-                <p>${item.tags.join(', ')}</p>
+              <li class="result">
+                <div class="result__card">
+                  <h2><a href="${item.url}">${highlightedTitle}</a></h2>
+                  <p>${highlightedContent}...</p>
+                  <p><strong>Tags:</strong> ${item.tags}</p>
+                </div>
               </li>`;
           }).join('')
         : '<li>No results found.</li>';
@@ -65,10 +71,13 @@ method="get">
 
     function handleSearch(event) {
       if (event) event.preventDefault();
-      const query = document.getElementById('search-input').value;
+      const query = document.getElementById('search-input').value.trim();
       if (query) {
-        const results = idx.search(query);
-        displayResults(results);
+        // Menggunakan wildcard agar lebih fleksibel
+        const results = idx.search(`${query}*`);
+        displayResults(results, query);
+      } else {
+        document.getElementById('results').innerHTML = "";
       }
     }
 
@@ -80,16 +89,26 @@ method="get">
       };
     }
 
+    function highlightText(text, query) {
+      const regex = new RegExp(`(${query})`, "gi");
+      return text.replace(regex, `<mark>$1</mark>`);
+    }
+
     document.getElementById('search-input').addEventListener('input', debounce(() => {
       handleSearch(new Event('submit'));
-    }, 500));
+    }, 300));
 
+    // Auto-search jika ada query di URL
     const params = new URLSearchParams(window.location.search);
     const query = params.get('query');
     if (query) {
       document.getElementById('search-input').setAttribute('value', query);
-      setTimeout(() => handleSearch(new Event('submit')), 100);
+      setTimeout(() => handleSearch(new Event('submit')), 50);
     }
+  });
+
+  document.addEventListener("keydown", function () {
+    document.getElementById("search-input").focus();
   });
 </script>
 {{- end -}}

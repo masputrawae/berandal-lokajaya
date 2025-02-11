@@ -1,39 +1,33 @@
 @use '../abstract/mixins' as m;
-@use '../abstract/placeholders';
 
 .tag-cloud {
-    @extend %full-shadow;
-    @include m.my(var(--size-5));
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-4);
     padding: var(--size-4);
-    background: var(--bg-alt);
-    border-radius: var(--size-3);
+    background: var(--bg-card);
+    border-radius: var(--size-2);
 
     &__container {
-        @extend %full-shadow;
-        @include m.my(var(--size-5));
-        flex: 1 1 45%;
-        background: var(--bg-default);
-        padding: var(--size-4);
-        border-radius: var(--size-3);
+        padding: var(--size-3);
+        border: var(--border-1) solid var(--cl-border);
+        border-radius: var(--size-2);
+        background: var(--bg-alt);
     }
 
     &__title {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: var(--heading);
+        font-family: var(--font-heading);
         font-size: var(--fs-7xl);
-        color: var(--cl-heading);
-        margin-bottom: var(--size-3);
+        color: var(--cl-text);
+        margin-bottom: var(--size-2);
     }
 
     &__list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
         display: flex;
         flex-wrap: wrap;
         gap: var(--size-2);
+        padding: 0;
+        list-style: none;
     }
 
     &__item {
@@ -41,19 +35,23 @@
     }
 
     &__link {
-        text-decoration: none;
-        font-size: calc(var(--fs-sm) + (var(--fs-sm) * attr(data-weight integer)));
+        @include m.shadow;
+        display: inline-flex;
+        align-items: center;
+        gap: var(--size-1);
         font-family: var(--font-link);
+        font-size: var(--fs-base);
+        text-decoration: none;
         color: var(--cl-accent);
         padding: var(--size-2) var(--size-3);
+        border: var(--border-1) solid var(--cl-border);
         border-radius: var(--size-2);
-        transition: background 0.3s, color 0.3s;
-        display: inline-block;
-    
-        &:hover {
-            background: var(--link-hover);
-            color: var(--cl-highlight);
-            text-decoration: none;
-        }
+        background: var(--bg-default);
+        transition: all 0.3s ease;
+    }
+
+    &__link:hover {
+        background: var(--link-hover);
+        color: var(--bg-default);
     }
 }

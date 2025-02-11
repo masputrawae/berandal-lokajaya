@@ -2,77 +2,84 @@
 @use "../abstract/mixins" as m;
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@400;700&family=Fira+Mono:wght@400;500&family=Lora:wght@400;600&family=Poppins:wght@400;600&family=Playfair+Display:wght@400;700&family=Work+Sans:wght@400;600&display=swap");
-
 html {
-    font-family: var(--font-base);
     font-size: var(--fs-html);
+    font-family: var(--font-base);
+    background-color: var(--bg-default);
+    color: var(--cl-text);
 }
 
-body {font-size: var(--fs-base);}
+body{
+    font-size: var(--fs-base);
+}
 
 main {
+    font-family: var(--font-article);
+    font-size: var(--fs-base);
     line-height: 1.6;
+    color: var(--cl-text);
+
     h1, h2, h3, h4, h5, h6 {
-        @include m.my(var(--size-5));
-        color: var(--cl-heading);
         scroll-margin-top: 4rem;
+        font-family: var(--font-heading);
+        font-weight: bold;
+        color: var(--cl-heading, var(--cl-text));
+        margin-bottom: var(--size-5);
+        margin-top: var(--size-5);
 
         @include bp.min-width(lg){
             scroll-margin-top: 0;
         }
     }
 
-    h1 {font-size: var(--fs-7xl);}
-    h2 {font-size: var(--fs-5xl);}
-    h3 {font-size: var(--fs-4xl);}
-    h4 {font-size: var(--fs-3xl);}
-    h5 {font-size: var(--fs-2xl);}
-    h6 {font-size: var(--fs-1xl);}
+    h1 { font-size: var(--fs-5xl); }
+    h2 { font-size: var(--fs-4xl); }
+    h3 { font-size: var(--fs-3xl); }
+    h4 { font-size: var(--fs-2xl); }
+    h5 { font-size: var(--fs-xl); }
+    h6 { font-size: var(--fs-lg); }
 
-    article p {
-        font-family: var(--font-article);
+    p {
+        font-size: var(--fs-base);
+        margin-bottom: var(--size-4);
+    }
+
+    a {
+        font-family: var(--font-link);
+        color: var(--cl-accent);
+        text-decoration: none;
+        &:hover { color: var(--link-hover); }
+        &:focus { color: var(--link-focus); }
+        &:active { color: var(--link-active); }
+    }
+
+    blockquote {
+        font-family: var(--font-quote);
+        font-size: var(--fs-lg);
+        font-style: italic;
+        border-left: var(--border-3) solid var(--cl-border);
+        padding-left: var(--size-4);
+        margin: var(--size-4) 0;
+        color: var(--cl-muted);
+    }
+
+    pre {
+        padding: var(--size-3);
+        border-radius: var(--size-2);
+        overflow-x: auto;
+    }
+
+    code {
+        border-radius: var(--size-1);
     }
 
     ul, ol {
         padding-left: var(--size-5);
-        margin-bottom: var(--size-4);
     }
 
-    pre, code {
-        font-family: var(--font-monospace);
-        font-size: var(--fs-tiny);
-    }
-
-    pre {
-        @include m.py(2rem);
-        @include m.px(var(--size-5));
-        position: relative;
-        border-radius: var(--size-1);
-        border: var(--border-1) solid var(--cl-border);
-        width: 100%;
-        overflow-x: auto;
-    }
-
-    hr {
-        border: 0;
-        border-top: var(--border-1) solid var(--cl-border);
-        margin: var(--size-5) 0;
-        width: 100%;
-    }
-
-    a {
-        color: var(--cl-accent);
-        font-family: var(--font-link);
-
-        &:hover {
-            color: var(--link-hover);
-            text-decoration: underline;
-        }
-    }
-    
     mark {
         background-color: var(--cl-highlight);
-        color: var(--cl-text-highlight);
+        color: var(--bg-default);
         padding: var(--size-1) var(--size-1);
         border-radius: var(--size-1);
         font-weight: bolder;
@@ -117,4 +124,70 @@ main {
             border-color: var(--link-hover);
         }
     }
+
+    hr {
+        border: 0;
+        border-top: var(--border-1) solid var(--cl-border);
+        margin: var(--size-5) 0;
+        width: 100%;
+    }
+}
+
+// Syntax highlighting
+.highlight {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.highlight[data-lang]::before {
+    content: attr(data-lang);
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: var(--border-1) solid var(--cl-border);
+    color: var(--code-function);
+    padding: var(--size-1) var(--size-2);
+    font-size: var(--fs-tiny);
+    font-weight: bold;
+    border-radius: var(--size-1);
+    z-index: 1;
+}
+
+.bg, .chroma {
+    color: var(--code-text);
+    background-color: var(--code-bg);
+    font-family: var(--font-monospace);
+    font-size: var(--fs-sm);
+}
+
+.chroma {
+    .x, .cl { color: var(--code-text); }
+    .err { color: #960050; background-color: #1e0010; }
+    .lnlinks { outline: none; text-decoration: none; color: inherit; }
+    .lntd, .lntable { padding: 0; margin: 0; border: 0; }
+    .lntd { vertical-align: top; }
+    .lntable { border-spacing: 0; }
+    .hl { background-color: var(--code-highlight-bg); }
+
+    // Line numbers
+    .lnt, .ln {
+        white-space: pre;
+        -webkit-user-select: none;
+        user-select: none;
+        margin-right: 0.4em;
+        padding: 0 0.4em;
+        color: var(--code-line-number);
+    }
+    .line { display: flex; }
+    .k, .kc, .kd, .kp, .kr, .kt, .no { color: var(--code-keyword); }
+    .kn, .nt, .o, .ow, .gd { color: var(--code-operator); }
+    .na, .nc, .nd, .ne, .nf, .nx, .gi { color: var(--code-function); }
+    .l, .se, .m, .mb, .mf, .mh, .mi, .il, .mo { color: var(--code-number); }
+    .ld, .s, .sa, .sb, .sc, .dl, .sd, .s2, .sh, .si, .sx, .sr, .s1, .ss { color: var(--code-string); }
+    .c, .ch, .cm, .c1, .cs, .cp, .cpf, .gu { color: var(--code-comment); }
+    
+    .ge { font-style: italic; }
+    .gs { font-weight: bold; }
 }

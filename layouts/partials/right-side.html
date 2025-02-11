@@ -1,23 +1,21 @@
 <aside class="sidebar sidebar--right">
   <header class="sidebar__header">
-    <div class="sidebar__header-container">
-      <div class="sidebar__title sidebar__title--small">{{ .Title }}</div>
-      <button class="sidebar__button" id="rightClose">
-        <i class="bi bi-x"></i>
-      </button>
-    </div>
+    <button class="btn btn--icon" id="rightClose">
+      <i class="bi bi-x"></i>
+    </button>
+    <div class="sidebar__title sidebar__title--small">Word Count: {{ .WordCount }}</div>
   </header>
   
-  <nav class="menu-right">
+  <nav class="nav nav--right-side">
     {{- $related := .Site.RegularPages.Related . | first 20 -}}
     {{- if $related -}}
-      <strong class="menu-right__title">Related:</strong>
-      <ul class="menu-right__list">
+      <strong class="nav__title">Related:</strong>
+      <ul class="nav__list nav__list--overflow">
         {{- range $related -}}
-          <li class="menu-right__item">
+          <li class="nav__item">
 
-            <a class="menu-right__link" href="{{ .RelPermalink }}">
-              <div class="menu-right__card">
+            <a class="nav__link nav__link--color" href="{{ .RelPermalink }}">
+              <div class="nav__card">
                 <i class="bi bi-link"></i>
                 <span>{{ .LinkTitle }}</span>
               </div>
@@ -27,13 +25,13 @@
         {{- end -}}
       </ul>
     {{- else -}}
-      <strong class="menu-right__title">Pinned:</strong>
-      <ul class="menu-right__list">
+      <strong class="nav__title">Pinned:</strong>
+      <ul class="nav__list nav__list--overflow">
         {{- range where .Site.RegularPages "Params.pinned" true -}}
-          <li class="menu-right__item">
+          <li class="nav__item">
 
-            <a class="menu-right__link" href="{{ .RelPermalink }}">
-              <div class="menu-right__card">
+            <a class="nav__link nav__link--color" href="{{ .RelPermalink }}">
+              <div class="nav__card">
                 <i class="bi bi-pin"></i>
                 <span>{{ .LinkTitle }}</span>
               </div>
@@ -44,11 +42,14 @@
       </ul>
     {{- end -}}
     
-    <div class="menu-right__toc" id="tableOfContents">
-      <strong class="menu-right__title">On This Page</strong>
-      <ul>
-        {{ .TableOfContents }}
-      </ul>
-    </div>
+    {{ $toc := .TableOfContents }}
+    {{ $toc := replaceRE `<ul>` `<ul class="nav__list">` $toc }}
+    {{ $toc := replaceRE `<li>` `<li class="nav__item">` $toc }}
+    {{ $toc := replaceRE `<a href=` `<a class="nav__link nav__link--color" href=` $toc }}
+
+    <strong class="nav__title">On This Page</strong>
+    <ul class="nav__toc nav__list--overflow" id="tableOfContents">
+      {{ $toc | safeHTML }}
+    </ul>
   </nav>
 </aside>

@@ -1,4 +1,4 @@
 ---
-title: search
+title: Search
 layout: search
 ---

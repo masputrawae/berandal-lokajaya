@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ========================= COLLAPSE FUNCTIONALITY =========================
-    const collapseButtons = document.querySelectorAll(".menu-left__button--collapse");
+    const collapseButtons = document.querySelectorAll(".btn--collapse");
     const collapseAllButton = document.getElementById("toggleCollapseAll");
     let allCollapsed = false;
 
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const toggleFolderCollapse = (folder, isCollapsed) => {
-        const sublist = folder.querySelector(".menu-left__list--collapse");
+        const sublist = folder.querySelector(".nav__list--collapse");
         if (sublist) {
             sublist.classList.toggle("collapsed", isCollapsed);
             sessionStorage.setItem(`collapsed_${folder.dataset.id}`, isCollapsed);
@@ -61,9 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     collapseButtons.forEach(button => {
         button.addEventListener("click", function () {
-            const parentItem = this.closest(".menu-left__item--folder");
+            const parentItem = this.closest(".nav__item--folder");
             if (parentItem) {
-                const isCollapsed = parentItem.querySelector(".menu-left__list--collapse")
+                const isCollapsed = parentItem.querySelector(".nav__list--collapse")
                     .classList.toggle("collapsed");
                 sessionStorage.setItem(`collapsed_${parentItem.dataset.id}`, isCollapsed);
                 toggleIcon(this.querySelector("i"), isCollapsed);
@@ -71,27 +71,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    document.querySelectorAll(".menu-left__item--folder").forEach(folder => {
+    document.querySelectorAll(".nav__item--folder").forEach(folder => {
         toggleFolderCollapse(folder, sessionStorage.getItem(`collapsed_${folder.dataset.id}`) === "true");
     });
 
     collapseAllButton?.addEventListener("click", function () {
         allCollapsed = !allCollapsed;
-        document.querySelectorAll(".menu-left__item--folder")
+        document.querySelectorAll(".nav__item--folder")
             .forEach(folder => toggleFolderCollapse(folder, allCollapsed));
         toggleIcon(collapseAllButton.querySelector("i"), allCollapsed);
-    });
-
-    // ========================= FONT SIZE ADJUSTMENT =========================
-    const fontSelect = document.getElementById("fontAdjustment");
-    const savedFontSize = localStorage.getItem("fontSize") || "16";
-
-    document.documentElement.style.setProperty("--fs-html", `${savedFontSize}px`);
-    if (fontSelect) fontSelect.value = savedFontSize;
-
-    fontSelect?.addEventListener("change", function () {
-        localStorage.setItem("fontSize", this.value);
-        document.documentElement.style.setProperty("--fs-html", `${this.value}px`);
     });
 
     // ============================ COPY DATA-LANG ============================
@@ -108,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const observer = new MutationObserver(updateDataLang);
     observer.observe(document.body, { childList: true, subtree: true });
 
-    // TAGS
+    // ============================ TAGS CLOUD ============================
     document.querySelectorAll(".tag-cloud__link").forEach((tag) => {
         let weight = parseInt(tag.dataset.weight, 10) || 1;
         let minSize = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fs-base"));

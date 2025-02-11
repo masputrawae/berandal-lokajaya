@@ -1,66 +1,74 @@
-@use '../abstract/breakpoints' as bp;
 @use '../abstract/mixins' as m;
-@use '../abstract/placeholders';
+@use '../abstract/breakpoints' as bp;
 
 .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--size-4);
     padding: var(--size-4);
-  }
-  
-  .card {
-    @extend %full-shadow;
-    background: var(--bg-card);
-    border-radius: var(--size-3);
+}
+
+.card {
+    @include m.shadow;
+    background-color: var(--bg-card);
+    border: var(--border-1) solid var(--cl-border);
+    border-radius: var(--size-1);
+    margin-bottom: var(--size-5);
     overflow: hidden;
-    transition: transform 0.3s ease-in-out;
-    
-    &:hover {
-      transform: translateY(-5px);
-    }
-  
+
     &__img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
     }
-  
+
     &__content {
-      padding: var(--size-4);
+        padding: var(--size-4);
     }
-  
+
     &__title {
-      font-family: var(--heading);
-      font-size: var(--fs-2xl);
-      color: var(--cl-heading);
-      margin-bottom: var(--size-2);
+        margin-bottom: var(--size-2);
     }
-  
+
     &__excerpt {
-      font-family: var(--article);
-      font-size: var(--fs-base);
-      color: var(--cl-text);
-      line-height: 1.6;
-      margin-bottom: var(--size-3);
+        color: var(--cl-muted);
+        margin-bottom: var(--size-3);
     }
-  
+
     &__button {
-      display: inline-block;
-      background: var(--cl-accent);
-      color: var(--cl-text);
-      font-family: var(--link);
-      padding: var(--size-2) var(--size-4);
-      border-radius: var(--size-2);
-      text-decoration: none;
-      font-size: var(--fs-sm);
-      transition: background 0.3s ease-in-out;
-      
-      &:hover {
+        @include m.shadow;
+        display: inline-block;
+        font-family: var(--font-link);
         text-decoration: none;
-        color: var(--cl-highlight);
-        background: var(--link-hover);
-      }
+        background-color: var(--bg-highlight);
+        color: var(--bg-default);
+        padding: var(--size-2) var(--size-3);
+        border-radius: var(--size-1);
+        transition: background-color 0.3s;
+
+        &:hover {
+            color: var(--bg-default);
+            background-color: var(--cl-highlight);
+        }
     }
-  }
-  
+
+    @include bp.min-width(lg){
+        @include m.flex-justify(space-between, stretch);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-3px);
+        }
+
+        &__img {
+            width: 30%;
+            height: auto;
+            object-fit: cover;
+        }
+    
+        &__content {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: var(--size-1) var(--size-5);
+        }
+    }
+}

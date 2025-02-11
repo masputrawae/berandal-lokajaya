@@ -1,35 +1,33 @@
 <aside class="sidebar sidebar--left">
   <header class="sidebar__header">
-    <div class="sidebar__header-container">
-      <a class="sidebar__title" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
-      <div class="sidebar__actions">
+    <a class="sidebar__title" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+    <div class="sidebar__actions">
 
-        <button class="sidebar__button" aria-label="Go to Search Pages" onclick="window.location.href='{{ "search/" | relURL }}'">
-          <i class="bi bi-search"></i>
-        </button>
+      <button class="btn btn--icon" aria-label="Go to Search Pages" onclick="window.location.href='{{ "search/" | relURL }}'">
+        <i class="bi bi-search"></i>
+      </button>
 
-        <button class="sidebar__button" aria-label="Go to Home" onclick="window.location.href='{{ .Site.BaseURL }}'">
-          <i class="bi bi-house"></i>
-        </button>
+      <button class="btn btn--icon" aria-label="Go to Home" onclick="window.location.href='{{ .Site.BaseURL }}'">
+        <i class="bi bi-house"></i>
+      </button>
 
-        <button class="sidebar__button" id="switchTheme" aria-label="Switch themes Dark/Light">
-          <i class="bi bi-moon"></i>
-        </button>
+      <button class="btn btn--icon" id="switchTheme" aria-label="Switch themes Dark/Light">
+        <i class="bi bi-moon"></i>
+      </button>
 
-        <button class="sidebar__button" id="leftClose" aria-label="Close Sidebar Left" >
-          <i class="bi bi-x"></i>
-        </button>
-        
-      </div>
+      <button class="btn btn--icon" id="leftClose" aria-label="Close Sidebar Left" >
+        <i class="bi bi-x"></i>
+      </button>
+      
     </div>
   </header>
   
-  <nav class="menu-left">
-    <button class="menu-left__button" id="toggleCollapseAll">
+  <nav class="nav">
+    <button class="btn btn--nav" id="toggleCollapseAll">
       <i class="bi bi-folder2"></i>
       <span>Root</span>
     </button>
-    <ul class="menu-left__list">
+    <ul class="nav__list">
       {{- template "collapsible_nav" .Site.Home -}}
     </ul>
   </nav>

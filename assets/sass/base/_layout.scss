@@ -2,49 +2,57 @@
 @use '../abstract/mixins' as m;
 
 .layout {
-    @include m.max-h100dvb();
-    @include m.max-w100vw();
+    @include m.width-height(100vw, 100dvb);
     overflow: hidden;
-    background-color: var(--bg-default);
-    color: var(--cl-text);
 
-    &__main-wrapper {
-        @include m.max-h100dvb();
+    &__main {
+        display: flex;
+        flex-direction: column;
+        height: 100dvb;
         overflow-y: auto;
-    }
-
-    .sidebar {
-        @include m.max-h100dvb();
-        position: fixed;
-        width: 20rem;
-        top: 0;
-        transition: transform 0.3s ease-in-out;
-
-        &--left {
-            left: 0;
-            transform: translateX(-100%);
-        }
-
-        &--right {
-            right: 0;
-            transform: translateX(100%);
-        }
-
-        &.active {
-            transform: translateX(0%);
-        }
+        overflow-x: hidden;
     }
 
     @include bp.min-width(lg){
         @include m.flex-justify(space-between, stretch);
-        &__main-wrapper {
+
+        &__main {
             flex-basis: 60%;
         }
-
-        .sidebar {
-            position: relative;
-            transform: translateX(0%);
-            flex-basis: 20%;
-        }
     }
+}
+
+.sidebar {
+    @include m.width-height(20rem, 100dvb);
+    max-height: 100dvb;
+    background-color: var(--bg-default);
+    position: fixed;
+    top: 0;
+    transition: transform 0.3s ease-in-out;
+
+    &--left {
+        left: 0;
+        transform: translateX(-100%);
+    }
+
+    &--right {
+        right: 0;
+        transform: translateX(100%);
+    }
+
+    &.active {
+        transform: translateX(0%);
+    }
+
+    @include bp.min-width(lg){
+        position: relative;
+        flex-basis: 20%;
+        transform: translateX(0%);
+    }
+}
+
+main {
+    padding: var(--size-1);
+    margin: var(--size-1);
+    flex: 1;
 }

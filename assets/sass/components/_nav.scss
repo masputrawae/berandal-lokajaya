@@ -1,22 +1,39 @@
-@use 'mixins' as m;
+.nav {
+    &--right-side {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100dvb;
+        overflow: hidden;
+    }
 
-// =========SHADOW
-%full-shadow{
-    box-shadow: 
-    0px 2px 4px rgba(0, 0, 0, 0.10), 
-    0px 6px 12px rgba(0, 0, 0, 0.08),
-    inset 0px 2px 4px rgba(0, 0, 0, 0.10);
-}
+    &__title {
+        flex-shrink: 0;
+        background-color: var(--bg-alt);
+        padding: var(--size-3);
+    }
 
-// =========LIST STYLE TREE
-%tree-style-list {
-    ul {
+    &__list {
         list-style-type: none;
         padding-left: var(--size-2);
         position: relative;
+
+        &--collapse {
+            display: none;
+
+            &.collapsed {
+                display: block;
+            }
+        }
+
+        &--overflow {
+            overflow-y: auto;
+            flex: 1;
+            min-height: 0;
+        }
     }
 
-    li {
+    &__item {
         position: relative;
         padding-left: var(--size-5);
         padding-top: var(--size-2);
@@ -46,13 +63,15 @@
         }
     }
     
-    a {
+    &__link {
         font-size: var(--fs-body);
         color: var(--cl-text);
         display: block;
         text-decoration: none;
         font-family: var(--font-nav);
         transition: color 0.3s ease-in-out;
+
+        .bi {color: var(--status-info);}
 
         &:hover {
             color: var(--link-hover);

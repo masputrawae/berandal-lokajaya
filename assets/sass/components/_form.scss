@@ -1,18 +1,17 @@
-@use '../abstract/breakpoints' as bp;
 @use '../abstract/mixins' as m;
-@use '../abstract/placeholders';
 
 // SEARCH
 .search {
     &__form {
-        @include m.flex-justify(space-between, center, var(--size-1));
-        @include m.my(var(--size-3));
+        @include m.flex-justify(space-between, center);
+        margin: var(--size-2);
+        gap: var(--size-2);
     }
 
     &__input {
-        @extend %full-shadow;
+        @include m.shadow;
         @include m.width-height(100%, 3rem);
-        @include m.px(var(--size-2));
+        padding: 0 var(--size-2);
         background: var(--bg-default);
         border: var(--border-1) solid var(--cl-border);
         border-radius: var(--size-1);
@@ -27,5 +26,18 @@
             outline: none;
             background: var(--bg-alt);
         }
+    }
+}
+
+.result {
+    margin-top: var(--size-3);
+    margin-bottom: var(--size-3);
+
+    &__card{
+        @include m.shadow;
+        border: var(--border-1) solid var(--cl-border);
+        border-radius: var(--size-1);
+        background-color: var(--bg-card);
+        padding: var(--size-2);
     }
 }
