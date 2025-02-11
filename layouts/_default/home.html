@@ -24,7 +24,7 @@
   {{ end }}
 </div>
 
-<nav aria-label="pagination">
+<nav class="main-pagination" aria-label="pagination">
   {{ template "_internal/pagination.html" . }}
 </nav>
 
@@ -41,7 +41,8 @@
       {{- range $shuffledTags }}
         <li class="tag-cloud__item">
           <a class="tag-cloud__link" data-weight="{{- .count -}}" href="{{- "tags/" | relURL -}}{{- .name | urlize -}}">
-            {{- .name -}} ({{- .count -}})
+            <span>{{- .name -}}</span>
+            <span>({{- .count -}})</span>
           </a>
         </li>
       {{- end }}
@@ -60,7 +61,8 @@
       {{- range $shuffledCategories }}
         <li class="tag-cloud__item">
           <a class="tag-cloud__link" data-weight="{{- .count -}}" href="{{- "categories/" | relURL -}}{{- .name | urlize -}}">
-            {{- .name -}} ({{- .count -}})
+            <span>{{- .name -}}</span>
+            <span>({{- .count -}})</span>
           </a>
         </li>
       {{- end }}

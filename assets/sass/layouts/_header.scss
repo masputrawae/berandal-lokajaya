@@ -1,0 +1,27 @@
+@use '../abstract/breakpoints' as bp;
+@use '../abstract/mixins' as m;
+
+.site-header {
+    @include m.flex-justify(space-between, center, 0);
+    @include m.sticky-top();
+    padding: var(--size-3);
+    max-height: 4rem;
+    z-index: 5;
+
+    background-color: var(--bg-default);
+    border-bottom: var(--border-1) solid var(--cl-border);
+
+    &__button {
+        @include m.btn-primary();
+    }
+
+    &__title {
+        font-family: var(--font-title);
+        color: var(--cl-primary);
+        font-size: var(--fs-7xl);
+    }
+
+    @include bp.min-width(lg){
+        display: none;
+    }
+}

@@ -1,0 +1,94 @@
+$themes: (
+    dark: (
+        bg: (
+            default: #181818,
+            alt: #282828,
+            card: #2f2f2f,
+            highlight: #e6b800,
+        ),
+        
+        cl: (
+            accent: #b777ee,
+            text: #f0f0f0,
+            highlight: #000000,
+            muted: #bbbbbb,
+            border: #6e6e6e,
+        ),
+        
+        link: (
+            hover: #d8a8ff,
+            active: #9b58e6,
+            focus: #e6c3ff,
+        ),
+        
+        status: (
+            success: #4caf50,
+            tips: #42a5f5,
+            info: #29b6f6,
+            warning: #e07b00,
+            danger: #d32f2f,
+            error: #f44336,
+        ),
+
+        // KHUSUS KODE HIGHLIGHT
+        code: (
+            bg: #0d1117,
+            text: #c9d1d9,
+            comment: #8b949e,
+            keywoard: #ff79c6,
+            string: #69a9ff,
+            function: #d2a8ff,
+            operator: #4a90e2,
+            number: #f2cc60,
+            highlight-bg: #3a3d42,
+            line-number: #9099a1,
+        ),
+    ),
+    
+    light: (
+        bg: (
+            default: #d9d9d9,
+            alt: #f0f0f0,
+            card: #dadada,
+            highlight: #d96a1b,
+        ),
+        
+        cl: (
+            accent: #8c50c2,
+            text: #222222,
+            text-highlight: #000000,
+            muted: #555555,
+            border: #b3b3b3,
+            heading: #222222,
+        ),
+        
+        link: (
+            hover: #a070d6,
+            active: #7339a8,
+            focus: #c2a4e2,
+        ),
+        
+        status: (
+            success: #388e3c,
+            tips: #1976d2,
+            info: #0288d1,
+            warning: #f57c00,
+            danger: #c62828,
+            error: #b71c1c,
+        ),
+
+        // KHUSUS KODE HIGHLIGHT
+        code: (
+            bg: #f8f8f8,
+            text: #24292f,
+            comment: #6a737d,
+            keywoard: #d73a49,
+            string: #0055b3,
+            function: #005cc5,
+            operator: #d73a49,
+            number: #004da4,
+            highlight-bg: #e1e1e1,
+            line-number: #636363,
+        ),
+    ),
+);

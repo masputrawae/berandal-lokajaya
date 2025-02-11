@@ -1,0 +1,30 @@
+@use '../abstract/variables' as v;
+@use '../abstract/colors' as clr;
+
+:root {
+    @each $name, $value in v.$font-family {
+        --#{$name}: #{$value};
+    }
+    
+    @each $name, $value in v.$font-size {
+        --#{$name}: #{$value};
+    }
+
+    @each $name, $value in v.$size {
+        --size-#{$name}: #{$value};
+    }
+
+    @each $name, $value in v.$border {
+        --border-#{$name}: #{$value};
+    }
+}
+
+@each $theme, $categories in clr.$themes {
+    [data-theme=#{$theme}] {
+        @each $category, $values in $categories {
+            @each $name, $value in $values {
+                --#{$category}-#{$name}: #{$value};
+            }
+        }
+    }
+}

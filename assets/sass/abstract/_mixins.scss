@@ -1,0 +1,100 @@
+// ===================  FLEX JUSTIFY
+@mixin flex-justify($justify: space-between, $align-items: center, $gap: 0){
+    display: flex;
+    justify-content: $justify;
+    align-items: $align-items;
+    gap: $gap;
+}
+
+// ===================  STICKY TOP
+@mixin sticky-top {
+    position: sticky;
+    top: 0;
+}
+
+// ===================  STICKY BOTTOM
+@mixin sticky-bottom {
+    position: sticky;
+    bottom: 0;
+}
+
+// ===================  WIDTH HEIGHT
+@mixin width-height($width, $height){
+    width: $width;
+    height: $height;
+}
+
+// ===================  MAX HEIGHT
+@mixin max-h100dvb (){
+    height: 100dvb;
+    max-height: 100dvb;
+    min-height: 100dvb;
+}
+
+// ===================  MAX WIDTH
+@mixin max-w100vw (){
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 100vw;
+}
+
+// ===================  ELLIPSIS
+@mixin ellipsis{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// ===================  ALIGN CENTER
+@mixin align-center {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+// ===================  PADDING & MARGIN
+@mixin px($val){
+    padding-left: $val;
+    padding-right: $val;
+}
+
+@mixin py($val){
+    padding-top: $val;
+    padding-bottom: $val;
+}
+
+@mixin mx($val){
+    margin-left: $val;
+    margin-right: $val;
+}
+
+@mixin my($val){
+    margin-top: $val;
+    margin-bottom: $val;
+}
+
+// =================== SHADOW
+@mixin shadow {
+    box-shadow: 
+        0px 2px 4px rgba(0, 0, 0, 0.14), 
+        0px 6px 12px rgba(0, 0, 0, 0.12),
+        0px 16px 32px rgba(0, 0, 0, 0.1);
+}
+
+@mixin inset-shadow {
+    box-shadow: 
+        inset 0px 2px 4px rgba(0, 0, 0, 0.18), 
+        inset 0px 6px 10px rgba(0, 0, 0, 0.14),
+        inset 0px 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+// ===================  BUTTON
+@mixin btn-primary(){
+    padding: var(--size-3) var(--size-2);
+    color: var(--cl-btn);
+
+    .bi {
+        @include flex-justify(center, center, 0);
+        font-size: var(--fs-7xl);
+    }
+}

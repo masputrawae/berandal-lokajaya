@@ -1,0 +1,112 @@
+@use '../abstract/breakpoints' as bp;
+@use '../abstract/mixins' as m;
+@use '../abstract/placeholders';
+
+#leftClose, #rightClose{
+    @include bp.min-width(lg){
+        display: none;
+    }
+}
+
+.sidebar {
+    background-color: var(--bg-default);
+    z-index: 10;
+    overflow-y: auto;
+
+    &__header {
+        @include m.sticky-top;
+        @include m.px(var(--size-4));
+        @include m.py(var(--size-3));
+        background-color: var(--bg-default);
+        border-bottom: var(--border-1) solid var(--cl-border);
+        z-index: 5;
+    }
+
+    &__header-container {
+        @include m.flex-justify(space-between, center, var(--size-1));
+    }
+
+    &__title {
+        font-size: var(--fs-7xl);
+        color: var(--cl-primary);
+
+        &--small {
+            font-size: var(--fs-body);
+        }
+    }
+
+    &__button {
+        @extend %btn-icon;
+        @extend %full-shadow;
+    }
+    
+    &--left {
+        border-right: var(--border-3) solid var(--cl-border);
+
+        @include bp.min-width(lg){
+            border-right-width: var(--border-1);
+        }
+    }
+
+    &--right {
+        @include m.max-h100dvb();
+        border-left: var(--border-3) solid var(--cl-border);
+        overflow: hidden;
+
+        .sidebar__header {
+            border: none;
+        }
+        @include bp.min-width(lg){
+            border-left-width: var(--border-1);
+        }
+    }
+}
+
+.menu-left {
+    @extend %tree-style-list;
+    @include m.my(var(--size-3));
+
+    &__button {
+        color: var(--cl-accent);
+        text-align: start;
+        width: 100%;
+        font-size: var(--fs-lg);
+        
+        .bi {
+            font-size: var(--fs-body);
+            color: var(--cl-accent);
+        }
+    }
+
+    &__list--collapse {
+        display: none;
+
+        &.collapsed {
+            display: block;
+        }
+    }
+}
+
+.menu-right {
+    @extend %tree-style-list;
+    
+    &__title {
+        @include m.sticky-top();
+        border-top: var(--border-1) solid var(--cl-border);
+        border-bottom: var(--border-1) solid var(--cl-border);
+        padding: var(--size-2);
+        display: block;
+        background-color: var(--bg-default);
+        z-index: 5;
+    }
+    &__list {
+        padding-bottom: 3rem;
+        height: 30dvb;
+        overflow-y: auto;
+    }
+
+    &__toc {
+        height: 53dvb;
+        overflow-y: auto;
+    }
+}

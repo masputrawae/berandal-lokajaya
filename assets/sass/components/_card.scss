@@ -1,0 +1,73 @@
+@use '../abstract/breakpoints' as bp;
+@use '../abstract/mixins' as m;
+@use '../abstract/placeholders';
+
+// CARD
+.card-container {
+    padding: var(--size-5);
+    @include bp.min-width(lg){
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--size-4);
+    }   
+}
+
+.card {
+    @extend %full-shadow;
+    @include m.my(var(--size-5));
+    background-color: var(--bg-alt);
+    border-radius: var(--size-3);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    @include bp.min-width(lg){
+        @include m.my(0px);
+    }
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    &__img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    
+    &__content {
+        margin: var(--size-2) var(--size-5);
+        padding: var(--size-1) var(--size-3);
+    }
+    
+    &__title {
+        font-size: var(--fs-2xl);
+        font-weight: bold;
+        margin-bottom: var(--size-2);
+        color: var(--cl-heading);
+        font-family: var(--title);
+    }
+    
+    &__excerpt {
+        font-size: var(--fs-base);
+        color: var(--cl-text);
+        margin-bottom: var(--size-3);
+        font-family: var(--article);
+    }
+    
+    &__button {
+        @extend %full-shadow;
+        display: inline-block;
+        text-decoration: none;
+        background-color: transparent;
+        color: var(--cl-text);
+        padding: var(--size-2) var(--size-4);
+        border-radius: var(--size-2);
+        font-family: var(--font-link);
+        transition: background-color 0.3s;
+    
+        &:hover {
+            text-decoration: none;
+            background-color: var(--link-hover);
+            color: var(--cl-highlight);
+        }
+    }
+}

@@ -1,0 +1,120 @@
+@use "../abstract/breakpoints" as bp;
+@use "../abstract/mixins" as m;
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@400;700&family=Fira+Mono:wght@400;500&family=Lora:wght@400;600&family=Poppins:wght@400;600&family=Playfair+Display:wght@400;700&family=Work+Sans:wght@400;600&display=swap");
+
+html {
+    font-family: var(--font-base);
+    font-size: var(--fs-html);
+}
+
+body {font-size: var(--fs-base);}
+
+main {
+    line-height: 1.6;
+    h1, h2, h3, h4, h5, h6 {
+        @include m.my(var(--size-5));
+        color: var(--cl-heading);
+        scroll-margin-top: 4rem;
+
+        @include bp.min-width(lg){
+            scroll-margin-top: 0;
+        }
+    }
+
+    h1 {font-size: var(--fs-7xl);}
+    h2 {font-size: var(--fs-5xl);}
+    h3 {font-size: var(--fs-4xl);}
+    h4 {font-size: var(--fs-3xl);}
+    h5 {font-size: var(--fs-2xl);}
+    h6 {font-size: var(--fs-1xl);}
+
+    article p {
+        font-family: var(--font-article);
+    }
+
+    ul, ol {
+        padding-left: var(--size-5);
+        margin-bottom: var(--size-4);
+    }
+
+    pre, code {
+        font-family: var(--font-monospace);
+        font-size: var(--fs-tiny);
+    }
+
+    pre {
+        @include m.py(2rem);
+        @include m.px(var(--size-5));
+        position: relative;
+        border-radius: var(--size-1);
+        border: var(--border-1) solid var(--cl-border);
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    hr {
+        border: 0;
+        border-top: var(--border-1) solid var(--cl-border);
+        margin: var(--size-5) 0;
+        width: 100%;
+    }
+
+    a {
+        color: var(--cl-accent);
+        font-family: var(--font-link);
+
+        &:hover {
+            color: var(--link-hover);
+            text-decoration: underline;
+        }
+    }
+    
+    mark {
+        background-color: var(--cl-highlight);
+        color: var(--cl-text-highlight);
+        padding: var(--size-1) var(--size-1);
+        border-radius: var(--size-1);
+        font-weight: bolder;
+    }
+
+    // CHECK BOX
+    li:has(input[type="checkbox"]) {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: var(--size-2);
+    }
+
+    input{
+        &[type="checkbox"] {
+            @include m.width-height(var(--size-5), var(--size-5));
+            appearance: none;
+            border: 2px solid var(--cl-accent);
+            border-radius: var(--border-1);
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        &[type="checkbox"]:checked {
+            background-color: var(--cl-accent);
+            border-color: var(--cl-accent);
+        }
+
+        &[type="checkbox"]:checked::after {
+            content: "✔";
+            color: var(--bg-default);
+            font-size: var(--fs-base);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &[type="checkbox"]:hover {
+            border-color: var(--link-hover);
+        }
+    }
+}

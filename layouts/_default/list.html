@@ -9,14 +9,11 @@
 
 <nav>
   <ul class="list">
-  {{- range .Data.Terms.Alphabetical -}}
+    {{- range .Pages -}}
     <li class="list__item">
-      <a class="list__link" href="{{- .Page.RelPermalink -}}">
-        <span class="list__name">{{- .Page.LinkTitle -}}</span>
-        <span class="list__count">({{- .Count -}})</span>
-      </a>
+      <a class="list__link" href="{{- .Permalink -}}">{{- .Title -}}</a>
     </li>
-  {{- end -}}
+    {{- end -}}
   </ul>
 </nav>
 {{- end -}}

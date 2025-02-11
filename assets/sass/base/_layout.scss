@@ -1,0 +1,50 @@
+@use '../abstract/breakpoints' as bp;
+@use '../abstract/mixins' as m;
+
+.layout {
+    @include m.max-h100dvb();
+    @include m.max-w100vw();
+    overflow: hidden;
+    background-color: var(--bg-default);
+    color: var(--cl-text);
+
+    &__main-wrapper {
+        @include m.max-h100dvb();
+        overflow-y: auto;
+    }
+
+    .sidebar {
+        @include m.max-h100dvb();
+        position: fixed;
+        width: 20rem;
+        top: 0;
+        transition: transform 0.3s ease-in-out;
+
+        &--left {
+            left: 0;
+            transform: translateX(-100%);
+        }
+
+        &--right {
+            right: 0;
+            transform: translateX(100%);
+        }
+
+        &.active {
+            transform: translateX(0%);
+        }
+    }
+
+    @include bp.min-width(lg){
+        @include m.flex-justify(space-between, stretch);
+        &__main-wrapper {
+            flex-basis: 60%;
+        }
+
+        .sidebar {
+            position: relative;
+            transform: translateX(0%);
+            flex-basis: 20%;
+        }
+    }
+}

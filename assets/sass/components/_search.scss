@@ -1,0 +1,31 @@
+@use '../abstract/breakpoints' as bp;
+@use '../abstract/mixins' as m;
+@use '../abstract/placeholders';
+
+// SEARCH
+.search {
+    &__form {
+        @include m.flex-justify(space-between, center, var(--size-1));
+        @include m.my(var(--size-3));
+    }
+
+    &__input {
+        @extend %full-shadow;
+        @include m.width-height(100%, 3rem);
+        @include m.px(var(--size-2));
+        background: var(--bg-default);
+        border: var(--border-1) solid var(--cl-border);
+        border-radius: var(--size-1);
+        color: var(--cl-text);
+
+        &:hover {
+            border-color: var(--link-hover);
+        }
+
+        &:focus {
+            border-color: var(--cl-accent);
+            outline: none;
+            background: var(--bg-alt);
+        }
+    }
+}

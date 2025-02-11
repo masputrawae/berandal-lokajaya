@@ -1,0 +1,34 @@
+$xs: 0;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+$xxxl: 1600px;
+
+@mixin min-width($size) {
+  @if $size == xs {
+    @media (min-width: $xs) { @content; }
+  }
+  @else if $size == sm {
+    @media (min-width: $sm) { @content; }
+  }
+  @else if $size == md {
+    @media (min-width: $md) { @content; }
+  }
+  @else if $size == lg {
+    @media (min-width: $lg) { @content; }
+  }
+  @else if $size == xl {
+    @media (min-width: $xl) { @content; }
+  }
+  @else if $size == xxl {
+    @media (min-width: $xxl) { @content; }
+  }
+  @else if $size == xxxl {
+    @media (min-width: $xxxl) { @content; }
+  }
+  @else {
+    @warn "Breakpoint '#{$size}' is not defined!";
+  }
+}
