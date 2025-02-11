@@ -12,7 +12,13 @@
     border-bottom: var(--border-1) solid var(--cl-border);
 
     &__button {
-        @include m.btn-primary();
+        padding: var(--size-3) var(--size-2);
+        color: var(--cl-btn);
+
+        .bi {
+            @include m.flex-justify(center, center, 0);
+            font-size: var(--fs-7xl);
+        }
     }
 
     &__title {

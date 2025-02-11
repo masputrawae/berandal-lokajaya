@@ -72,29 +72,3 @@
     margin-top: $val;
     margin-bottom: $val;
 }
-
-// =================== SHADOW
-@mixin shadow {
-    box-shadow: 
-        0px 2px 4px rgba(0, 0, 0, 0.14), 
-        0px 6px 12px rgba(0, 0, 0, 0.12),
-        0px 16px 32px rgba(0, 0, 0, 0.1);
-}
-
-@mixin inset-shadow {
-    box-shadow: 
-        inset 0px 2px 4px rgba(0, 0, 0, 0.18), 
-        inset 0px 6px 10px rgba(0, 0, 0, 0.14),
-        inset 0px 12px 20px rgba(0, 0, 0, 0.1);
-}
-
-// ===================  BUTTON
-@mixin btn-primary(){
-    padding: var(--size-3) var(--size-2);
-    color: var(--cl-btn);
-
-    .bi {
-        @include flex-justify(center, center, 0);
-        font-size: var(--fs-7xl);
-    }
-}

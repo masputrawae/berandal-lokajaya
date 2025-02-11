@@ -15,8 +15,7 @@
 
     &__header {
         @include m.sticky-top;
-        @include m.px(var(--size-4));
-        @include m.py(var(--size-3));
+        padding: var(--size-3) var(--size-4);
         background-color: var(--bg-default);
         border-bottom: var(--border-1) solid var(--cl-border);
         z-index: 5;
@@ -36,8 +35,17 @@
     }
 
     &__button {
-        @extend %btn-icon;
         @extend %full-shadow;
+        padding: var(--size-2);
+        border: var(--border-1) solid var(--cl-border);
+        border-radius: var(--size-1);
+        color: var(--cl-accent);
+        background-color: var(--bg-alt);
+
+        .bi {
+            @include m.flex-justify(center, center, 0);
+            font-size: var(--fs-body);
+        }
     }
     
     &--left {
