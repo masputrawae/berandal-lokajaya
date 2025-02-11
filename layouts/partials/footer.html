@@ -3,7 +3,13 @@
     <ul class="list list--flex">
       {{ range .Site.Params.socialMedia }}
         <li class="list__item">
-          <a class="list__link" href="{{ .url }}" target="_blank" rel="noopener">
+          <a 
+          aria-label="Go to {{ .social }}"
+          title="Go to {{ .social }}"
+          class="list__link" 
+          href="{{ .url }}" 
+          target="_blank" 
+          rel="noopener">
             <i class="bi {{ .icon }}"></i>
           </a>
         </li>
