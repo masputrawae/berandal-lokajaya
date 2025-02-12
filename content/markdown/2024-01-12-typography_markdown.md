@@ -1,9 +1,21 @@
 ---
-title: 'Example Projects'
+title: Typography
+date: 2025-02-12T23:43:42+07:00
+last_modified: 2025-02-12T23:43:42+07:00
+description: Artikel ini menguji berbagai sintaks Markdown yang didukung oleh Hugo.
+excerpt: Menggunakan artikel ini untuk memastikan elemen-elemen Markdown ditampilkan dengan benar di situs Hugo Anda.
+categories:
+  - Markdown
+  - Typography
+tags:
+  - markdown
+  - typography
+  - hugo
+  - testing
+thumbnail: https://res.cloudinary.com/dpkqfchhu/image/upload/v1739377878/ef468ff3-afe9-4c05-80da-e41fe1a388d6_tf7nh2.png
+pinned: true
+draft: false
 ---
-
-# Artikel Testing Hugo dengan Semua Sintaks Markdown
-
 Artikel ini dirancang untuk menguji semua sintaks Markdown yang mungkin didukung oleh Hugo. Dengan menggunakan artikel ini, Anda dapat memastikan bahwa semua elemen Markdown, termasuk perhitungan matematis, checkbox, dan lainnya, ditampilkan dengan benar di situs Hugo Anda.
 
 ---
@@ -64,7 +76,7 @@ Ini adalah contoh gambar:
 
 ---
 
-# Author Card
+## Author Card
 {{< author avatar="https://picsum.photos/200" name="John Doe" >}}
 John adalah seorang penulis dan pengembang web yang suka berbagi ilmu tentang Hugo dan SCSS.
 {{< /author >}}
@@ -168,13 +180,6 @@ Anda dapat menyematkan video atau konten lain menggunakan HTML:
 
 ---
 
-## Highlight (Penekanan Teks)
-
-Anda dapat menggunakan `==` untuk menandai teks penting:  
-Ini adalah teks yang ==sangat penting==.
-
----
-
 ## Status Box
 {{< status status="info" >}}
 Ini adalah pesan informasi biasa.
@@ -227,26 +232,4 @@ Orange
 
 ## Kesimpulan
 
-Dengan menggunakan artikel ini, Anda dapat menguji berbagai sintaks Markdown yang didukung oleh Hugo, termasuk:
-
-- Heading
-- Paragraf dan format teks
-- Daftar (list)
-- Tautan dan gambar
-- Blockquote
-- Kode (inline dan block)
-- Tabel
-- Garis horizontal
-- Catatan kaki
-- Emoji
-- Checkbox
-- Perhitungan matematis (LaTeX)
-- HTML
-- Video dan embed
-- Highlight
-- Singkatan
-- Daftar definisi
-
-Pastikan semua elemen ditampilkan dengan benar dan sesuai dengan yang diharapkan.
-
----
+Dengan menggunakan artikel ini, Anda dapat menguji berbagai sintaks Markdown yang didukung oleh Hugo.
