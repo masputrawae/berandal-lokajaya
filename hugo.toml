@@ -61,5 +61,5 @@ icon = "bi-pinterest"
 
 [[params.socialMedia]]
 social = "rss"
-url = "/index.xml"
+url = "index.xml"
 icon = "bi-rss"
