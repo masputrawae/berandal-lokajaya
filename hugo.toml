@@ -2,6 +2,7 @@ baseURL = 'https://masputrawae.github.io/berandal-lokajaya/'
 languageCode = 'id'
 title = 'Testing'
 paginate = 4
+pluralizeListTitles = false
 
 [params]
   usernameGithub = "masputrawae"
