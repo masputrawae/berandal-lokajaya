@@ -10,8 +10,6 @@
         font-size: var(--fs-lg);
         width: 100%;
         color: var(--cl-text);
-
-        .bi {color: var(--cl-accent);}
     }
     &--icon {
         @include m.shadow;

@@ -1,8 +1,7 @@
 @use '../abstract/breakpoints' as bp;
 @use '../abstract/mixins' as m;
 
-// SITE HEADER
-.site-header {
+.site-header { // SITE HEADER
     @include m.flex-justify(space-between, center);
     @include m.sticky-top();
     padding: var(--size-3);
@@ -23,8 +22,7 @@
     }
 }
 
-// CONTENT HEADER
-.main-header{
+.main-header{ // CONTENT HEADER
     h1 {font-size: var(--fs-7xl);}
     @include bp.min-width(lg){
         background-color: var(--bg-alt);

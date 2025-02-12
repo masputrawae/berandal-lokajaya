@@ -18,7 +18,7 @@ tags:
   - coding
 thumbnail: https://res.cloudinary.com/dpkqfchhu/image/upload/v1739357757/output_mqhcao.png
 pinned: false
-draft: true
+draft: false
 ---
 
 Git adalah **sistem kontrol versi (Version Control System - VCS)** yang digunakan untuk melacak perubahan dalam kode atau file, terutama dalam proyek pengembangan perangkat lunak. Dengan Git, kamu bisa bekerja dalam tim tanpa khawatir akan kehilangan atau menimpa perubahan orang lain.  

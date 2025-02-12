@@ -1,4 +1,7 @@
+@use '../abstract/mixins' as m;
+
 .nav {
+    margin-bottom: var(--size-5);
     &--right-side {
         flex: 1;
         display: flex;
@@ -64,6 +67,7 @@
     }
     
     &__link {
+        @include m.ellipsis;
         font-size: var(--fs-lg);
         color: var(--cl-text);
         display: block;

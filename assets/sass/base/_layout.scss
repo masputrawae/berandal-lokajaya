@@ -1,26 +1,25 @@
-@use '../abstract/breakpoints' as bp;
-@use '../abstract/mixins' as m;
+@use '../abstract/breakpoints' as bp; // Import breakpoints
+@use '../abstract/mixins' as m; // Import mixins
 
-*::-webkit-scrollbar {
-    width: var(--size-1);
-    height: var(--size-1);
+*::-webkit-scrollbar { // Custom scrollbar
+    @include m.width-height(var(--size-1), var(--size-1));
     background: var(--cl-border);
 }
   
-*::-webkit-scrollbar-thumb {
-    border-radius: 4px;
+*::-webkit-scrollbar-thumb { // Scrollbar thumb
+    border-radius: var(--size-1);
     background: var(--cl-accent);
 }
 
-*::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track { // Scrollbar track
     background: transparent;
 }
 
-.layout {
+.layout { // Main layout container
     @include m.width-height(100vw, 100dvb);
     overflow: hidden;
 
-    &__main {
+    &__main { // Main content area
         display: flex;
         flex-direction: column;
         height: 100dvb;
@@ -29,7 +28,7 @@
         scroll-behavior: smooth;
     }
 
-    @include bp.min-width(lg){
+    @include bp.min-width(lg) { // Desktop adjustments
         @include m.flex-justify(space-between, stretch);
 
         &__main {
@@ -38,37 +37,79 @@
     }
 }
 
-.sidebar {
-    @include m.width-height(20rem, 100dvb);
+.sidebar { // Sidebar styles
+    @include m.width-height(320px, 100dvb);
     max-height: 100dvb;
     background-color: var(--bg-default);
     position: fixed;
     top: 0;
     transition: transform 0.3s ease-in-out;
+    z-index: 10;
+    overflow-y: auto;
 
-    &--left {
+    &__header { // Sidebar header
+        @include m.sticky-top;
+        @include m.flex-justify(space-between, center);
+        gap: var(--size-2);
+        padding: var(--size-3) var(--size-4);
+        background-color: var(--bg-default);
+        border-bottom: var(--border-1) solid var(--cl-border);
+        z-index: 5;
+    }
+
+    &__title { // Sidebar title
+        font-size: var(--fs-7xl);
+        color: var(--cl-primary);
+
+        &--small {
+            font-size: var(--fs-body);
+        }
+    }
+
+    &--left { // Left sidebar
         left: 0;
         transform: translateX(-100%);
+        border-right: var(--border-3) solid var(--cl-border);
+
+        @include bp.min-width(lg) {
+            border-right-width: var(--border-1);
+        }
     }
 
-    &--right {
+    &--right { // Right sidebar
         right: 0;
         transform: translateX(100%);
+        border-left: var(--border-3) solid var(--cl-border);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+
+        .sidebar__header {
+            border-left: none;
+            flex-shrink: 0;
+            height: 50px;
+        }
+        
+        @include bp.min-width(lg) {
+            border: none;
+        }
     }
 
-    &.active {
+    &.active { // Active sidebar
         transform: translateX(0%);
     }
 
-    @include bp.min-width(lg){
+    @include bp.min-width(xs) { // Adjust width on small screens
+        width: 360px;
+    }
+    
+    @include bp.min-width(lg) { // Adjust sidebar on large screens
         position: relative;
         flex-basis: 21%;
         transform: translateX(0%);
-    }
-}
 
-main {
-    padding: var(--size-1);
-    margin: var(--size-1);
-    flex: 1;
+        #leftClose, #rightClose {
+            display: none;
+        }
+    }
 }

@@ -16,7 +16,7 @@
 .page-item {
     &.active .page-link {
         background-color: var(--bg-highlight);
-        color: var(--cl-highlight);
+        color: var(--cl-text);
         font-weight: bold;
     }
 
@@ -27,13 +27,13 @@
         border-radius: var(--size-1);
         text-decoration: none;
         background-color: var(--bg-alt);
-        color: var(--cl-text);
+        color: var(--cl-accent);
         transition: background-color 0.3s;
 
         &:hover {
-            background-color: var(--cl-highlight);
+            background-color: var(--bg-highlight);
             text-decoration: none;
-            color: var(--bg-default);
+            color: var(--cl-text);
         }
     }
 }

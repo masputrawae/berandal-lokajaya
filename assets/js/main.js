@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ============================ TAGS CLOUD ============================
     document.querySelectorAll(".tag-cloud__link").forEach((tag) => {
         let weight = parseInt(tag.dataset.weight, 10) || 1;
-        let minSize = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fs-base"));
+        let minSize = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fs-sm"));
         let scaleFactor = 0.1;
         tag.style.fontSize = `${minSize + weight * scaleFactor}rem`;
     });

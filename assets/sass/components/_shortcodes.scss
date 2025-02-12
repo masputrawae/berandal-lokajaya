@@ -1,0 +1,130 @@
+@use '../abstract/mixins' as m;
+
+//========================== STATUS
+.status {
+    @include m.shadow;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: var(--size-4) 0;
+    border-left: var(--size-2) solid;
+    border-right: var(--size-2) solid;
+    background: var(--bg-alt);
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {transform: translateY(-5px);}
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: var(--size-2);
+        font-weight: bold;
+    }
+
+    &__icon {font-size: var(--fs-7xl);}
+    &__title {font-size: var(--fs-5xl);}
+
+    &__content {
+        margin-top: 0.5rem;
+    }
+
+    &--tips {
+        border-color: var(--status-tips);
+        color: var(--status-tips);
+    }
+
+    &--success {
+        border-color: var(--status-success);
+        color: var(--status-success);
+    }
+
+    &--info {
+        border-color: var(--status-info);
+        color: var(--status-info);
+    }
+
+    &--warning {
+        border-color: var(--status-warning);
+        color: var(--status-warning);
+    }
+
+    &--error {
+        border-color: var(--status-error);
+        color: var(--status-error);
+    }
+
+    &--danger {
+        border-color: var(--status-danger);
+        color: var(--status-danger);
+    }
+}
+
+//========================== IMAGE FLOAT
+.img-wrapper {
+    margin: 1rem 0;
+
+    &.img-full img {
+        width: 100%;
+        display: block;
+    }
+
+    &.img-center {
+        display: flex;
+        justify-content: center;
+    }
+
+    &.img-left,
+    &.img-right {
+        max-width: 50%;
+        float: left;
+        margin-right: 1rem;
+    }
+
+    &.img-right {
+        float: right;
+        margin-left: 1rem;
+        margin-right: 0;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+//========================== AUTHOR CARD
+.author-card {
+    @include m.shadow;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--cl-border);
+    border-radius: 8px;
+    background: var(--bg-card);
+    max-width: 400px;
+
+    &__img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    &__info {
+        flex: 1;
+    }
+
+    &__title {
+        color: var(--cl-accent);
+        font-weight: bolder;
+        display: block;
+        font-size: var(--fs-5xl);
+    }
+
+    p {
+        font-size: 0.9rem;
+        color: var(--cl-muted);
+        margin: 0;
+    }
+}

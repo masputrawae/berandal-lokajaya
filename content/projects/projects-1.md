@@ -2,105 +2,251 @@
 title: 'Example Projects'
 ---
 
-```scss
-$colors: (
-    cl-primary: ,
-    cl-secondary: ,
-    cl-tertiary: ,
-    cl-accent: ,
+# Artikel Testing Hugo dengan Semua Sintaks Markdown
 
-    cl-info: ,
-    cl-tips: ,
-    cl-warning: ,
-    cl-danger: ,
-    cl-error: ,
+Artikel ini dirancang untuk menguji semua sintaks Markdown yang mungkin didukung oleh Hugo. Dengan menggunakan artikel ini, Anda dapat memastikan bahwa semua elemen Markdown, termasuk perhitungan matematis, checkbox, dan lainnya, ditampilkan dengan benar di situs Hugo Anda.
 
-    cl-overlay: ,
-);
+---
 
-$themes: (
-    light: (
-        cl-site-title: ,
-        
-        cl-bg-body: ,
-        cl-bg-primary: ,
-        cl-bg-secondary: ,
-        cl-bg-tertiary: ,
+## Heading Level 2
 
-        cl-text: ,
-        cl-heading: ,
-        cl-strong: ,
-        cl-highlight: ,
-        cl-muted: ,
-        cl-border: ,
-        cl-blockquote: ,
-        cl-blockquote-border: ,
-        cl-chackbox: ,
-        cl-checkbox-checked: ,
-        cl-label: ,
+### Heading Level 3
 
-        cl-link: ,
-        cl-link-hover: ,
-        cl-link-active: ,
-        cl-link-focus: ,
-        cl-link-underline: ,
-        cl-link-hover-underline: ,
-        cl-link-active-underline: ,
-        cl-link-focus-underline: ,
+#### Heading Level 4
 
-        cl-btn: ,
-        cl-btn-hover: ,
-        cl-btn-active: ,
-        cl-btn-focus: ,
-        cl-btn-bg-hover: ,
-        cl-btn-bg-active: ,
-        cl-btn-bg-focus: ,
+##### Heading Level 5
 
-        cl-card-title: ,
-        cl-card-bg-hover: ,
-        cl-card-bg-focus: 
-    ),
-    
-    dark: (
-        cl-site-title: ,
-        
-        cl-bg-body: ,
-        cl-bg-primary: ,
-        cl-bg-secondary: ,
-        cl-bg-tertiary: ,
+###### Heading Level 6
 
-        cl-text: ,
-        cl-heading: ,
-        cl-strong: ,
-        cl-highlight: ,
-        cl-muted: ,
-        cl-border: ,
-        cl-blockquote: ,
-        cl-blockquote-border: ,
-        cl-chackbox: ,
-        cl-checkbox-checked: ,
-        cl-label: ,
+---
 
-        cl-link: ,
-        cl-link-hover: ,
-        cl-link-active: ,
-        cl-link-focus: ,
-        cl-link-underline: ,
-        cl-link-hover-underline: ,
-        cl-link-active-underline: ,
-        cl-link-focus-underline: ,
+## Paragraf dan Format Teks
 
-        cl-btn: ,
-        cl-btn-hover: ,
-        cl-btn-active: ,
-        cl-btn-focus: ,
-        cl-btn-bg-hover: ,
-        cl-btn-bg-active: ,
-        cl-btn-bg-focus: ,
+Ini adalah paragraf biasa. Anda dapat menulis teks biasa di sini. **Ini adalah teks tebal** dan *ini adalah teks miring*. Anda juga bisa menggunakan ~~teks coret~~.
 
-        cl-card-title: ,
-        cl-card-bg-hover: ,
-        cl-card-bg-focus: 
-    )
-);
+Anda juga bisa menggabungkan **teks tebal** dengan *teks miring* seperti ini: ***teks tebal dan miring***.
+
+---
+
+## Daftar (List)
+
+### Daftar Tidak Berurutan (Unordered List)
+
+- Item 1
+- Item 2
+  - Sub-item 2.1
+  - Sub-item 2.2
+- Item 3
+
+### Daftar Berurutan (Ordered List)
+
+1. Item pertama
+2. Item kedua
+   1. Sub-item 2.1
+   2. Sub-item 2.2
+3. Item ketiga
+
+---
+
+## Tautan (Link) dan Gambar (Image)
+
+Ini adalah contoh [tautan ke Google](https://www.google.com).
+
+Ini adalah contoh gambar:
+
+![Alt text untuk gambar](https://picsum.photos.com/150 "Judul gambar opsional")
+
+---
+
+## Blockquote
+
+> Ini adalah contoh blockquote. Anda dapat menggunakannya untuk menonjolkan kutipan atau teks penting.
+
+---
+
+# Author Card
+{{< author avatar="https://picsum.photos/200" name="John Doe" >}}
+John adalah seorang penulis dan pengembang web yang suka berbagi ilmu tentang Hugo dan SCSS.
+{{< /author >}}
+
+
+---
+## Kode (Code)
+
+### Inline Code
+
+Anda dapat menulis `inline code` dengan menggunakan backtick.
+
+### Block Code
+
+```python
+def hello_world():
+    print("Hello, World!")
 ```
+
+```javascript
+function helloWorld() {
+    console.log("Hello, World!");
+}
+```
+
+---
+
+## Tabel (Table)
+
+| No  | Nama       | Usia | Kota      |
+| --- | ---------- | ---- | --------- |
+| 1   | John Doe   | 28   | New York  |
+| 2   | Jane Smith | 34   | London    |
+| 3   | Sam Brown  | 22   | Sydney    |
+
+---
+
+## Garis Horizontal (Horizontal Rule)
+
+---
+
+## Catatan Kaki (Footnote)
+
+Ini adalah contoh teks dengan catatan kaki[^1].
+
+[^1]: Ini adalah catatan kaki.
+
+---
+
+## Emoji
+
+Anda juga bisa menggunakan emoji di Markdown! 😊🎉🚀
+
+---
+
+## Checkbox (Task List)
+
+- [x] Task 1 (Selesai)
+- [ ] Task 2 (Belum selesai)
+- [ ] Task 3 (Belum selesai)
+
+---
+
+## Perhitungan Matematis (LaTeX)
+
+Hugo mendukung rendering persamaan matematis menggunakan LaTeX. Berikut beberapa contoh:
+
+### Inline Math
+
+Contoh persamaan inline: \( E = mc^2 \).
+
+### Block Math
+
+Contoh persamaan dalam blok:
+
+$$
+\int_{a}^{b} x^2 \, dx
+$$
+
+Atau persamaan yang lebih kompleks:
+
+$$
+\frac{\partial u}{\partial t} + \nabla \cdot (\mathbf{u} \otimes \mathbf{u}) = -\nabla p + \nu \nabla^2 \mathbf{u}
+$$
+
+---
+
+## HTML (Jika Diperlukan)
+
+Jika Anda perlu menggunakan HTML, Anda bisa melakukannya seperti ini:
+
+<p style="color:red;">Ini adalah teks berwarna merah menggunakan HTML.</p>
+
+---
+
+## Video dan Embed
+
+Anda dapat menyematkan video atau konten lain menggunakan HTML:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+---
+
+## Highlight (Penekanan Teks)
+
+Anda dapat menggunakan `==` untuk menandai teks penting:  
+Ini adalah teks yang ==sangat penting==.
+
+---
+
+## Status Box
+{{< status status="info" >}}
+Ini adalah pesan informasi biasa.
+{{< /status >}}
+
+{{< status status="tips" title="Tips Keren!" >}}
+Gunakan `SCSS` untuk styling yang lebih fleksibel!
+{{< /status >}}
+
+{{< status status="warning" >}}
+Hati-hati, ini peringatan!
+{{< /status >}}
+
+{{< status status="danger" >}}
+Bahaya! Jangan lakukan ini sembarangan.
+{{< /status >}}
+
+{{< status status="error" title="Kesalahan Fatal!" >}}
+Terjadi error pada sistem. Periksa kembali konfigurasi Anda.
+{{< /status >}}
+
+
+---
+## Images
+### Default (Center)
+{{< image src="https://picsum.photos/360?1" alt="Gambar Center" align="center" >}}
+Veniam labore officia sunt exercitation consequat deserunt excepteur et occaecat elit in ex. Do ex enim sunt reprehenderit. Aute nulla qui Lorem eu incididunt velit aliquip duis laborum est. Id eu ex qui velit duis cupidatat. Amet commodo voluptate pariatur et cupidatat eiusmod incididunt eiusmod proident ut ullamco esse. Anim ullamco sunt eu fugiat id.
+### Left Float
+{{< image src="https://picsum.photos/360?2" alt="Gambar Left" align="left" >}}
+Cillum culpa do sint consequat amet culpa et quis eiusmod in irure. Elit excepteur occaecat enim cupidatat magna ex fugiat aute fugiat occaecat dolor velit anim. Aute tempor et cupidatat nostrud sunt nulla dolor eiusmod esse culpa aliqua elit dolor aute. Do mollit aute voluptate Lorem incididunt. Sit nostrud eu veniam enim proident esse eiusmod reprehenderit dolor mollit.
+### Right Float
+{{< image src="https://picsum.photos/360?3" alt="Gambar Right" align="right" >}}
+Ipsum ea magna id pariatur quis cillum. Quis id do ea amet reprehenderit amet velit voluptate adipisicing eu deserunt voluptate nisi proident. Qui dolore tempor velit non anim est occaecat cillum. Elit id esse consequat commodo.Tempor pariatur consectetur ipsum excepteur non pariatur esse proident officia ea enim officia voluptate commodo. In proident pariatur aliquip dolor consequat do irure laborum laboris nulla. Cillum dolor pariatur eiusmod ex ullamco duis incididunt. Duis nulla ipsum in deserunt duis enim. Commodo cillum ut do consectetur.
+### Full Float
+{{< image src="https://picsum.photos/360?4" alt="Gambar Full" align="full" >}}
+Ipsum ea magna id pariatur quis cillum. Quis id do ea amet reprehenderit amet velit voluptate adipisicing eu deserunt voluptate nisi proident. Qui dolore tempor velit non anim est occaecat cillum. Elit id esse consequat commodo.Tempor pariatur consectetur ipsum excepteur non pariatur esse proident officia ea enim officia voluptate commodo. In proident pariatur aliquip dolor consequat do irure laborum laboris nulla. Cillum dolor pariatur eiusmod ex ullamco duis incididunt. Duis nulla ipsum in deserunt duis enim. Commodo cillum ut do consectetur.
+
+---
+## Definition List
+
+Markdown ekstensi seperti Hugo mungkin mendukung daftar definisi:
+
+Apple
+: Pomaceous fruit of plants of the genus Malus in the family Rosaceae.
+
+Orange
+: The fruit of an evergreen tree of the genus Citrus.
+
+---
+
+## Kesimpulan
+
+Dengan menggunakan artikel ini, Anda dapat menguji berbagai sintaks Markdown yang didukung oleh Hugo, termasuk:
+
+- Heading
+- Paragraf dan format teks
+- Daftar (list)
+- Tautan dan gambar
+- Blockquote
+- Kode (inline dan block)
+- Tabel
+- Garis horizontal
+- Catatan kaki
+- Emoji
+- Checkbox
+- Perhitungan matematis (LaTeX)
+- HTML
+- Video dan embed
+- Highlight
+- Singkatan
+- Daftar definisi
+
+Pastikan semua elemen ditampilkan dengan benar dan sesuai dengan yang diharapkan.
+
+---

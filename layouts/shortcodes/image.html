@@ -1,53 +1,7 @@
-{{- $src := .Get "src" -}}
+{{- $src := .Get "src" | safeURL -}}
 {{- $alt := .Get "alt" | default "Image" -}}
 {{- $align := .Get "align" | default "center" -}}
 
-<div class="img-container img-{{ $align }}">
-    <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy">
-</div>
-
-<style>
-  .img-container {
-    margin: 10px;
-    max-width: 100%;
-  }
-  .img-container img {
-    height: auto;
-    border-radius: 5px;
-    max-width: 100%;
-  }
-
-  /* Ukuran gambar standar */
-  .img-left img, .img-right img {
-    width: 40%; /* Biarkan fleksibel tapi tetap proporsional */
-    min-width: 150px; /* Supaya gambar kecil tetap kelihatan */
-    max-width: 300px; /* Batas maksimum biar tidak terlalu besar */
-  }
-
-  /* Gambar kiri */
-  .img-left {
-    float: left;
-    margin-right: 10px;
-  }
-
-  /* Gambar kanan */
-  .img-right {
-    float: right;
-    margin-left: 10px;
-  }
-
-  /* Gambar tengah */
-  .img-center {
-    display: flex;
-    justify-content: center;
-    clear: both;
-  }
-
-  /* Gambar full */
-  .img-full img {
-    width: 100%;
-    border-radius: 0;
-    clear: both;
-    display: block;
-  }
-</style>
+<figure class="img-wrapper img-{{ $align }}">
+  <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy">
+</figure>

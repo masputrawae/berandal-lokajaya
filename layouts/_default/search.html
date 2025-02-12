@@ -62,7 +62,7 @@ method="get">
                 <div class="result__card">
                   <h2><a href="${item.url}">${highlightedTitle}</a></h2>
                   <p>${highlightedContent}...</p>
-                  <p><strong>Tags:</strong> ${item.tags}</p>
+                  <p><strong>Tags:</strong> ${item.tags.join(", ")}</p>
                 </div>
               </li>`;
           }).join('')

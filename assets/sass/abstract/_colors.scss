@@ -9,16 +9,16 @@ $themes: (
         
         cl: (
             accent: #00ffcc,
-            text: #ffffff,
+            text: #ececec,
             highlight: #00aaff,
             muted: #a0a0b0,
             border: #333344,
         ),
         
         link: (
-            hover: #33ffd1,  // Lebih terang dari accent
-            active: #00bfa5, // Lebih gelap dari hover
-            focus: #66fff5,  // Neon lebih mencolok
+            hover: #33ffd1,
+            active: #00bfa5,
+            focus: #66fff5,
         ),
         
         status: (
@@ -26,8 +26,8 @@ $themes: (
             tips: #00ccff,
             info: #3399ff,
             warning: #ffcc00,
-            danger: #ff4444,
-            error: #ff0033,
+            danger: #ff0000,
+            error: #c70028,
         ),
 
         code: (
@@ -61,16 +61,16 @@ $themes: (
         ),
         
         link: (
-            hover: #3388ff,  // Lebih terang dari accent
-            active: #0044aa, // Lebih gelap dari hover
-            focus: #66aaff,  // Lebih mencolok dari hover
+            hover: #3388ff, 
+            active: #0044aa,
+            focus: #66aaff, 
         ),
         
         status: (
             success: #009966,
             tips: #0088cc,
             info: #0055cc,
-            warning: #ff9900,
+            warning: #ff6200,
             danger: #cc3333,
             error: #cc0000,
         ),
