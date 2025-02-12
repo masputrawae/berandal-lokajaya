@@ -1,6 +1,6 @@
 baseURL = 'https://masputrawae.github.io/berandal-lokajaya/'
 languageCode = 'id'
-title = 'Testing'
+title = 'My Notes'
 paginate = 4
 enableRobotsTXT = true
 pluralizeListTitles = false
