@@ -48,8 +48,8 @@
     {{ $toc := replaceRE `<a href=` `<a class="nav__link nav__link--color" href=` $toc }}
 
     <strong class="nav__title">On This Page</strong>
-    <ul class="nav__toc nav__list--overflow" id="tableOfContents">
+    <div class="nav__toc nav__list--overflow" id="tableOfContents">
       {{ $toc | safeHTML }}
-    </ul>
+    </div>
   </nav>
 </aside>

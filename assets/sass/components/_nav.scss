@@ -15,7 +15,7 @@
 
     &__list {
         list-style-type: none;
-        padding-left: var(--size-2);
+        padding-left: var(--size-1);
         position: relative;
 
         &--collapse {
@@ -64,17 +64,27 @@
     }
     
     &__link {
-        font-size: var(--fs-body);
+        font-size: var(--fs-lg);
         color: var(--cl-text);
         display: block;
         text-decoration: none;
         font-family: var(--font-nav);
         transition: color 0.3s ease-in-out;
 
-        .bi {color: var(--status-info);}
+        .bi {
+            color: var(--cl-accent);
+        }
 
         &:hover {
             color: var(--link-hover);
+        }
+
+        &:active {
+            color: var(--link-active);
+        }
+
+        &:focus {
+            color: var(--link-focus);
         }
     }
 }

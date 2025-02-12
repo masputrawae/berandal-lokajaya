@@ -1,6 +1,21 @@
 @use '../abstract/breakpoints' as bp;
 @use '../abstract/mixins' as m;
 
+*::-webkit-scrollbar {
+    width: var(--size-1);
+    height: var(--size-1);
+    background: var(--cl-border);
+}
+  
+*::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: var(--cl-accent);
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
 .layout {
     @include m.width-height(100vw, 100dvb);
     overflow: hidden;
@@ -11,13 +26,14 @@
         height: 100dvb;
         overflow-y: auto;
         overflow-x: hidden;
+        scroll-behavior: smooth;
     }
 
     @include bp.min-width(lg){
         @include m.flex-justify(space-between, stretch);
 
         &__main {
-            flex-basis: 60%;
+            flex-basis: 58%;
         }
     }
 }
@@ -46,7 +62,7 @@
 
     @include bp.min-width(lg){
         position: relative;
-        flex-basis: 20%;
+        flex-basis: 21%;
         transform: translateX(0%);
     }
 }

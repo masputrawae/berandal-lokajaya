@@ -16,7 +16,7 @@
 .page-item {
     &.active .page-link {
         background-color: var(--bg-highlight);
-        color: var(--bg-default);
+        color: var(--cl-highlight);
         font-weight: bold;
     }
 

@@ -46,7 +46,7 @@
         overflow: hidden;
 
         .sidebar__header {
-            border-left: var(--border-1) solid var(--cl-border);
+            border-left: none;
             flex-shrink: 0;
             height: 50px;
         }

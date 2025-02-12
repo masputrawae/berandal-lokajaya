@@ -1,10 +1,9 @@
-<!-- TEMPLATES -->
 {{- define "collapsible_nav" -}}
   {{- if .Pages -}}
+
+    <!-- === Iterasi Folder Dulu === -->
     {{- range .Pages -}}
       {{- if .IsSection -}}
-
-        <!-- ==================== -->
         <li class="nav__item nav__item--folder" data-id="{{- .RelPermalink | urlize -}}">
           <button class="btn btn--nav btn--collapse">
             <i class="bi bi-folder2"></i>
@@ -14,9 +13,12 @@
             {{- template "collapsible_nav" . -}}
           </ul>
         </li>
-        <!-- ==================== -->
+      {{- end -}}
+    {{- end -}}
 
-      {{- else if .IsPage -}}
+    <!-- === Iterasi File Setelahnya === -->
+    {{- range .Pages -}}
+      {{- if .IsPage -}}
         {{- if ne .File.BaseFileName "search" -}}
           <li class="nav__item nav__item--file" data-id="{{- .RelPermalink | urlize -}}">
             <a class="nav__link" href="{{- .RelPermalink -}}">
@@ -26,8 +28,7 @@
           </li>
         {{- end -}}
       {{- end -}}
-      
     {{- end -}}
+
   {{- end -}}
 {{- end -}}
-<!-- TEMPLATES -->

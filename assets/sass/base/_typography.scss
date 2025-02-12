@@ -65,12 +65,15 @@ main {
 
     pre {
         padding: var(--size-3);
-        border-radius: var(--size-2);
         overflow-x: auto;
     }
 
-    code {
+    :not(pre) > code {
         border-radius: var(--size-1);
+        background-color: var(--bg-alt);
+        color: var(--code-function);
+        border-radius: var(--size-1);
+        padding: var(--size-1);
     }
 
     ul, ol {
@@ -145,14 +148,14 @@ main {
     display: block;
     position: absolute;
     top: 0;
-    right: 0;
-    border: var(--border-1) solid var(--cl-border);
+    left: 0;
+    background-color: var(--code-bg);
     color: var(--code-function);
-    padding: var(--size-1) var(--size-2);
-    font-size: var(--fs-tiny);
-    font-weight: bold;
-    border-radius: var(--size-1);
+    padding: var(--size-1);
+    font-size: var(--fs-sm);
+    font-weight: normal;
     z-index: 1;
+    border: var(--border-1) solid var(--cl-border);
 }
 
 .bg, .chroma {
@@ -163,6 +166,8 @@ main {
 }
 
 .chroma {
+    padding-top: 2.5rem;
+    border: var(--border-1) solid var(--cl-border);
     .x, .cl { color: var(--code-text); }
     .err { color: #960050; background-color: #1e0010; }
     .lnlinks { outline: none; text-decoration: none; color: inherit; }

@@ -7,6 +7,7 @@
 
 .card {
     @include m.shadow;
+    display: block;
     background-color: var(--bg-card);
     border: var(--border-1) solid var(--cl-border);
     border-radius: var(--size-1);
@@ -32,25 +33,8 @@
         margin-bottom: var(--size-3);
     }
 
-    &__button {
-        @include m.shadow;
-        display: inline-block;
-        font-family: var(--font-link);
-        text-decoration: none;
-        background-color: var(--bg-highlight);
-        color: var(--bg-default);
-        padding: var(--size-2) var(--size-3);
-        border-radius: var(--size-1);
-        transition: background-color 0.3s;
-
-        &:hover {
-            color: var(--bg-default);
-            background-color: var(--cl-highlight);
-        }
-    }
-
     @include bp.min-width(lg){
-        @include m.flex-justify(space-between, stretch);
+        @include m.flex-justify(space-between, start);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
 
         &:hover {

@@ -9,18 +9,21 @@
 
 <div class="card-container">
   {{ range .Paginator.Pages }}
-    <article class="card">
+    <a 
+    href="{{ .RelPermalink }}" 
+    class="card" 
+    aria-label="Read more {{ .Title }}"
+    title="Read more {{ .Title }}">
       <img 
       class="card__img" 
       src="{{ .Params.thumbnail }}" 
-      alt="{{ .Title }}" 
+      alt="{{ .Title }}"
       loading="lazy">
       <section class="card__content">
         <h2 class="card__title">{{ .Title }}</h2>
-        <p class="card__excerpt">{{ .Summary | plainify | truncate 150 }}</p>
-        <a class="card__button" href="{{ .RelPermalink }}">Read more</a>
+        <p class="card__excerpt">{{ .Summary | plainify | truncate 350 }}</p>
       </section>
-    </article>
+    </a>
   {{ end }}
 </div>
 
