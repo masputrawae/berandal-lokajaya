@@ -33,7 +33,7 @@
     }
 
     &__link {
-        @include m.flex-justify(space-between, center);
+        @include m.flex-justify(center, center);
         width: 2rem;
         height: 2rem;
         border-radius: 50%;
