@@ -17,13 +17,18 @@ body {
 // Main Content Styling
 //==================================================================
 main {
-    padding: var(--size-1) var(--size-5);
-    margin: 0 var(--size-5);
+    padding: var(--size-1);
+    margin: var(--size-1);
     flex: 1;
     font-family: var(--font-article);
     font-size: var(--fs-base);
     line-height: 1.75;
     color: var(--cl-text);
+    
+    @include bp.min-width(lg){
+        padding: var(--size-1) var(--size-5);
+        margin: 0 var(--size-5);
+    }
 
     //==================================================================
     // Headings
