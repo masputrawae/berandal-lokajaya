@@ -13,6 +13,7 @@
     border: var(--border-1) solid var(--cl-border);
     border-radius: var(--size-1);
     margin-bottom: var(--size-5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
 
     &__img {
@@ -33,16 +34,15 @@
         color: var(--cl-muted);
         margin-bottom: var(--size-3);
     }
+    
+    &:hover{
+        transform: translateY(-3px);
+        text-decoration: none;
+    }
 
     @include bp.min-width(lg){
         @include m.flex-justify(space-between, start);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-        &:hover {
-            transform: translateY(-3px);
-            text-decoration: none;
-        }
-
+        
         &__img {
             width: 30%;
             height: auto;
