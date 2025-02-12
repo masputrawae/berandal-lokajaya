@@ -25,7 +25,7 @@
 .main-header{ // CONTENT HEADER
     h1 {font-size: var(--fs-7xl);}
     @include bp.min-width(lg){
-        background-color: var(--bg-alt);
         @include m.flex-justify(center, center);
+        background-color: var(--bg-alt);
     }
 }

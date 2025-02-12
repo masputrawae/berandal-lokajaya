@@ -21,7 +21,7 @@
       loading="lazy">
       <section class="card__content">
         <h2 class="card__title">{{ .Title }}</h2>
-        <p class="card__excerpt">{{ .Summary | plainify | truncate 300 }}</p>
+        <p class="card__excerpt">{{ .Summary | plainify | truncate 250 }}</p>
       </section>
     </a>
   {{ end }}

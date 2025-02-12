@@ -2,11 +2,22 @@ baseURL = 'https://masputrawae.github.io/berandal-lokajaya/'
 languageCode = 'id'
 title = 'Testing'
 paginate = 4
+enableRobotsTXT = true
 pluralizeListTitles = false
 
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
 [params]
-  usernameGithub = "masputrawae"
-  description = "testing only"
+  description = "Deskripsi situs Anda untuk mesin pencari."
+  keywords = "hugo, markdown, blog, contoh"
+  author = "Nama Anda"
+  thumbnail = "https://example.com/thumbnail-default.png"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
 
 [markup]
   [markup.tableOfContents]

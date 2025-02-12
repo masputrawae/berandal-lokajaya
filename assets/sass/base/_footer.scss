@@ -1,3 +1,5 @@
+@use '../abstract/mixins' as m;
+
 .footer {
     background-color: var(--bg-alt);
     color: var(--cl-text);
@@ -31,9 +33,7 @@
     }
 
     &__link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include m.flex-justify(space-between, center);
         width: 2rem;
         height: 2rem;
         border-radius: 50%;

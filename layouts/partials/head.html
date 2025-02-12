@@ -1,35 +1,65 @@
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ printf "%s | %s" .Title .Site.Title }}{{ end }}</title>
+<meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+
+<link rel="canonical" href="{{ .Permalink }}">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="{{ .Site.Params.keywords }}">
+<meta name="author" content="{{ .Site.Params.author }}">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ .Description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ .Params.thumbnail }}">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:description" content="{{ .Description }}">
+<meta name="twitter:image" content="{{ .Params.thumbnail }}">
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ "index.xml" | relURL }}">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
 
 <!-- (( CSS )) -->
-{{- with resources.Get "sass/main.scss" -}}
-{{- $opts := dict
-  "enableSourceMap" (not hugo.IsProduction)
-  "outputStyle" (cond hugo.IsProduction "compressed" "expanded")
-  "targetPath" "css/main.css"
-  "transpiler" "dartsass"
--}}
-{{- with . | toCSS $opts -}}
-{{- if hugo.IsProduction -}}
-{{- with . | fingerprint -}}
-<link rel="stylesheet" href="{{- .RelPermalink -}}" integrity="{{- .Data.Integrity -}}" crossorigin="anonymous">
-{{- end -}}
-{{- else -}}
-<link rel="stylesheet" href="{{- .RelPermalink -}}">
-{{- end -}}
-{{- end -}}
-{{- end -}}
+{{- with resources.Get "sass/main.scss" }}
+  {{- $opts := dict
+    "enableSourceMap" (not hugo.IsProduction)
+    "outputStyle" (cond hugo.IsProduction "compressed" "expanded")
+    "targetPath" "css/main.css"
+    "transpiler" "dartsass"
+  }}
+  {{- with . | toCSS $opts }}
+    {{- if hugo.IsProduction }}
+      {{- with . | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+      {{- end }}
+    {{- else }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{- end }}
+  {{- end }}
+{{- end }}
+
 <!-- (( JAVASCRIPT )) -->
 {{- with resources.Get "js/main.js" }}
-{{- if eq hugo.Environment "development" }}
-{{- with . | js.Build }}
-<script src="{{ .RelPermalink }}" defer></script>
-{{- end }}
-{{- else }}
-{{- $opts := dict "minify" true }}
-{{- with . | js.Build $opts | fingerprint }}
-<script src="{{ .RelPermalink }}" integrity="{{- .Data.Integrity }}" crossorigin="anonymous" defer></script>
-{{- end }}
-{{- end }}
+  {{- if eq hugo.Environment "development" }}
+    {{- with . | js.Build }}
+      <script src="{{ .RelPermalink }}" defer></script>
+    {{- end }}
+  {{- else }}
+    {{- $opts := dict "minify" true }}
+    {{- with . | js.Build $opts | fingerprint }}
+      <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" defer></script>
+    {{- end }}
+  {{- end }}
 {{- end }}
