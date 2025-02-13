@@ -23,7 +23,7 @@
 <meta name="twitter:description" content="{{ .Description }}">
 <meta name="twitter:image" content="{{ .Params.thumbnail }}">
 
-<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ "/index.xml" | relURL }}">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ "index.xml" | relURL }}">
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}"> 
@@ -34,7 +34,7 @@
 <script defer>
   if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').then(reg => {
+          navigator.serviceWorker.register('{{ "sw.js" | relURL }}').then(reg => {
               console.log('Service worker registered with scope: ', reg.scope);
           }, err => {
               console.log('Service worker registration failed: ', err);
