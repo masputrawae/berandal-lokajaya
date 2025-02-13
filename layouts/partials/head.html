@@ -31,6 +31,18 @@
 <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
 <link rel="manifest" href="{{ "manifest.json" | relURL }}">
 
+<script defer>
+  if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then(reg => {
+              console.log('Service worker registered with scope: ', reg.scope);
+          }, err => {
+              console.log('Service worker registration failed: ', err);
+          });
+      });
+  }
+</script>
+
 <!-- (( CSS )) -->
 {{- with resources.Get "sass/main.scss" }}
   {{- $opts := dict
