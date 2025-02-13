@@ -17,6 +17,7 @@ tags:
   - roadmap
 last_modified_at: 2024-11-28
 author: Putra Jaya
+thumbnail: https://picsum.photos/100?1
 ---
 ## Roadmap Belajar Backend untuk Pemula
 
