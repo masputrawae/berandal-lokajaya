@@ -59,6 +59,7 @@
 
     &__title { // Sidebar title
         font-size: var(--fs-7xl);
+        font-family: var(--font-title);
         color: var(--cl-primary);
 
         &--small {

@@ -95,12 +95,4 @@ document.addEventListener("DOMContentLoaded", () => {
     updateDataLang();
     const observer = new MutationObserver(updateDataLang);
     observer.observe(document.body, { childList: true, subtree: true });
-
-    // ============================ TAGS CLOUD ============================
-    document.querySelectorAll(".tag-cloud__link").forEach((tag) => {
-        let weight = parseInt(tag.dataset.weight, 10) || 1;
-        let minSize = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fs-sm"));
-        let scaleFactor = 0.1;
-        tag.style.fontSize = `${minSize + weight * scaleFactor}rem`;
-    });
 });

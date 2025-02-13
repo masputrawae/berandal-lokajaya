@@ -13,7 +13,7 @@ sitemap:
 params:
   description: "Deskripsi situs Anda untuk mesin pencari."
   keywords: "hugo, markdown, blog, contoh"
-  author: "Nama Anda"
+  author: "Putra Jaya"
   thumbnail: "https://example.com/thumbnail-default.png"
   socialMedia:
     - social: "facebook"
@@ -45,7 +45,7 @@ params:
       icon: "bi-pinterest"
 
     - social: "rss"
-      url: "/index.xml"
+      url: "index.xml"
       icon: "bi-rss"
 
 mediaTypes:
