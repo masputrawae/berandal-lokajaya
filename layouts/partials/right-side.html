@@ -7,39 +7,37 @@
   </header>
   
   <nav class="nav nav--right-side">
-    {{- $related := .Site.RegularPages.Related . | first 20 -}}
-    {{- if $related -}}
-      <strong class="nav__title">Related:</strong>
-      <ul class="nav__list nav__list--overflow">
-        {{- range $related -}}
-          <li class="nav__item">
-
-            <a class="nav__link nav__link--color" href="{{ .RelPermalink }}">
-              <div class="nav__card">
-                <i class="bi bi-link"></i>
-                <span>{{ .LinkTitle }}</span>
-              </div>
-            </a>
-            
-          </li>
-        {{- end -}}
-      </ul>
-    {{- else -}}
-      <strong class="nav__title">Pinned:</strong>
-      <ul class="nav__list nav__list--overflow">
-        {{- range where .Site.RegularPages "Params.pinned" true -}}
-          <li class="nav__item">
-
-            <a class="nav__link nav__link--color" href="{{ .RelPermalink }}">
-              <div class="nav__card">
-                <i class="bi bi-pin"></i>
-                <span>{{ .LinkTitle }}</span>
-              </div>
-            </a>
-
-          </li>
-        {{- end -}}
-      </ul>
+    {{- if .IsHome -}}
+  <strong class="nav__title">Pinned:</strong>
+  <ul class="nav__list nav__list--overflow">
+    {{- range where .Site.RegularPages "Params.pinned" true -}}
+      <li class="nav__item">
+        <a class="nav__link nav__link--color" href="{{ .RelPermalink }}">
+          <div class="nav__card">
+            <i class="bi bi-pin"></i>
+            <span>{{ .LinkTitle }}</span>
+          </div>
+        </a>
+      </li>
+    {{- end -}}
+  </ul>
+    {{- else if .IsPage -}}
+      {{- $related := .Site.RegularPages.Related . | first 10 -}}
+      {{- if $related -}}
+        <strong class="nav__title">Related:</strong>
+        <ul class="nav__list nav__list--overflow">
+          {{- range $related -}}
+            <li class="nav__item">
+              <a class="nav__link nav__link--color" href="{{ .RelPermalink }}">
+                <div class="nav__card">
+                  <i class="bi bi-link"></i>
+                  <span>{{ .LinkTitle }}</span>
+                </div>
+              </a>
+            </li>
+          {{- end -}}
+        </ul>
+      {{- end -}}
     {{- end -}}
     
     {{ $toc := .TableOfContents }}

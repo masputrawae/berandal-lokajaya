@@ -33,26 +33,6 @@
 
 <div class="tag-cloud">
   <nav class="tag-cloud__container">
-    <h3 class="tag-cloud__title">Tags</h3>
-    <ul class="tag-cloud__list">
-      {{- $tags := .Site.Taxonomies.tags -}}
-      {{- $tagCounts := slice -}}
-      {{- range $tag, $pages := $tags -}}
-        {{- $tagCounts = $tagCounts | append (dict "name" $tag "count" (len $pages)) -}}
-      {{- end -}}
-      {{- $shuffledTags := shuffle $tagCounts -}}
-      {{- range $shuffledTags }}
-        <li class="tag-cloud__item">
-          <a class="tag-cloud__link" data-weight="{{- .count -}}" href="{{- "tags/" | relURL -}}{{- .name | urlize -}}">
-            <span>{{- .name -}}</span>
-            <span>({{- .count -}})</span>
-          </a>
-        </li>
-      {{- end }}
-    </ul>
-  </nav>
-  
-  <nav class="tag-cloud__container">
     <h3 class="tag-cloud__title">Categories</h3>
     <ul class="tag-cloud__list">
       {{- $categories := .Site.Taxonomies.categories -}}
@@ -65,6 +45,26 @@
         <li class="tag-cloud__item">
           <a class="tag-cloud__link" data-weight="{{- .count -}}" href="{{- "categories/" | relURL -}}{{- .name | urlize -}}">
             <span>{{ .name | title }}</span>
+            <span>({{- .count -}})</span>
+          </a>
+        </li>
+      {{- end }}
+    </ul>
+  </nav>
+  
+  <nav class="tag-cloud__container">
+    <h3 class="tag-cloud__title">Tags</h3>
+    <ul class="tag-cloud__list">
+      {{- $tags := .Site.Taxonomies.tags -}}
+      {{- $tagCounts := slice -}}
+      {{- range $tag, $pages := $tags -}}
+        {{- $tagCounts = $tagCounts | append (dict "name" $tag "count" (len $pages)) -}}
+      {{- end -}}
+      {{- $shuffledTags := shuffle $tagCounts -}}
+      {{- range $shuffledTags }}
+        <li class="tag-cloud__item">
+          <a class="tag-cloud__link" data-weight="{{- .count -}}" href="{{- "tags/" | relURL -}}{{- .name | urlize -}}">
+            <span>{{- .name -}}</span>
             <span>({{- .count -}})</span>
           </a>
         </li>
