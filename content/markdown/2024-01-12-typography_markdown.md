@@ -15,6 +15,7 @@ tags:
 thumbnail: https://res.cloudinary.com/dpkqfchhu/image/upload/v1739377878/ef468ff3-afe9-4c05-80da-e41fe1a388d6_tf7nh2.png
 pinned: true
 draft: false
+mathjax: true
 ---
 Artikel ini dirancang untuk menguji semua sintaks Markdown yang mungkin didukung oleh Hugo. Dengan menggunakan artikel ini, Anda dapat memastikan bahwa semua elemen Markdown, termasuk perhitungan matematis, checkbox, dan lainnya, ditampilkan dengan benar di situs Hugo Anda.
 
