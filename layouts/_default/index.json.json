@@ -1,7 +1,7 @@
 {
     "name": "{{ .Site.Title }}",
     "short_name": "{{ .Site.Title }}",
-    "start_url": "/",
+    "start_url": "{{ .Site.BaseURL }}",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#007bff",
