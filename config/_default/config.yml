@@ -1,0 +1,39 @@
+paginate: 4
+enableRobotsTXT: true
+pluralizeListTitles: false
+
+sitemap:
+  changefreq: "weekly"
+  priority: 0.5
+  filename: "sitemap.xml"
+
+mediaTypes:
+  "application/json":
+    suffixes: ["json"]
+
+outputFormats:
+  JSON:
+    mediaType: "application/json"
+    baseName: "manifest"
+    isPlainText: true
+    notAlternative: true
+
+outputs:
+  home: ["HTML", "JSON"]
+
+markup:
+  tableOfContents:
+    endLevel: 6
+    ordered: false
+    startLevel: 2
+
+  highlight:
+    codeFences: true
+    guessSyntax: true
+    style: "github-dark"
+    noClasses: false
+    lineNumbersInTable: false
+
+  goldmark:
+    renderer:
+      unsafe: true

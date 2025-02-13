@@ -31,20 +31,6 @@
 <link rel="icon" type="image/ico" href="{{ "favicon.ico" | relURL }}">
 <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
 <link rel="manifest" href="{{ "manifest.json" | relURL }}">
-
-<link rel="stylesheet" href="{{ "icons/icons.css" | relURL }}">
-<script defer>
-  if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-          navigator.serviceWorker.register('{{ "sw.js" | relURL }}').then(reg => {
-              console.log('Service worker registered with scope: ', reg.scope);
-          }, err => {
-              console.log('Service worker registration failed: ', err);
-          });
-      });
-  }
-</script>
-
 <!-- (( CSS )) -->
 {{- with resources.Get "sass/main.scss" }}
   {{- $opts := dict
@@ -74,6 +60,40 @@
     {{- $opts := dict "minify" true }}
     {{- with . | js.Build $opts | fingerprint }}
       <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" defer></script>
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+<!-- (( SW.JS )) -->
+{{- with resources.Get "js/sw.js" }}
+  {{- if eq hugo.Environment "development" }}
+    {{- with . | js.Build }}
+      <script defer>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register("{{ .RelPermalink }}").then(reg => {
+              console.log('Service worker registered with scope: ', reg.scope);
+            }).catch(err => {
+              console.error('Service worker registration failed:', err);
+            });
+          });
+        }
+      </script>
+    {{- end }}
+  {{- else }}
+    {{- $opts := dict "minify" true }}
+    {{- with . | js.Build $opts | fingerprint }}
+      <script defer>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register("{{ .RelPermalink }}", { integrity: "{{ .Data.Integrity }}", crossorigin: "anonymous" }).then(reg => {
+              console.log('Service worker registered with scope: ', reg.scope);
+            }).catch(err => {
+              console.error('Service worker registration failed:', err);
+            });
+          });
+        }
+      </script>
     {{- end }}
   {{- end }}
 {{- end }}
