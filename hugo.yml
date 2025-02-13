@@ -48,6 +48,21 @@ params:
       url: "/index.xml"
       icon: "bi-rss"
 
+mediaTypes:
+  "application/json":
+    suffixes: ["json"]
+
+outputFormats:
+  JSON:
+    mediaType: "application/json"
+    baseName: "manifest"
+    isPlainText: true
+    notAlternative: true
+
+outputs:
+  home: ["HTML", "JSON"]
+
+
 markup:
   tableOfContents:
     endLevel: 6
