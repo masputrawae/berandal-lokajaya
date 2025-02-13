@@ -1,0 +1,66 @@
+baseURL: "http://localhost:1313/"
+languageCode: "id"
+title: "My Notes"
+paginate: 4
+enableRobotsTXT: true
+pluralizeListTitles: false
+
+sitemap:
+  changefreq: "weekly"
+  priority: 0.5
+  filename: "sitemap.xml"
+
+params:
+  description: "Deskripsi situs Anda untuk mesin pencari."
+  keywords: "hugo, markdown, blog, contoh"
+  author: "Nama Anda"
+  thumbnail: "https://example.com/thumbnail-default.png"
+  socialMedia:
+    - social: "facebook"
+      url: "https://facebook.com/example.com"
+      icon: "bi-facebook"
+
+    - social: "twitter"
+      url: "https://twitter.com/example"
+      icon: "bi-twitter"
+
+    - social: "instagram"
+      url: "https://instagram.com/example"
+      icon: "bi-instagram"
+
+    - social: "discord"
+      url: "https://discord.com/in/example"
+      icon: "bi-discord"
+
+    - social: "youtube"
+      url: "https://youtube.com/channel/example"
+      icon: "bi-youtube"
+
+    - social: "github"
+      url: "https://github.com/example"
+      icon: "bi-github"
+
+    - social: "pinterest"
+      url: "https://pinterest.com/example"
+      icon: "bi-pinterest"
+
+    - social: "rss"
+      url: "/index.xml"
+      icon: "bi-rss"
+
+markup:
+  tableOfContents:
+    endLevel: 6
+    ordered: false
+    startLevel: 2
+
+  highlight:
+    codeFences: true
+    guessSyntax: true
+    style: "github-dark"
+    noClasses: false
+    lineNumbersInTable: false
+
+  goldmark:
+    renderer:
+      unsafe: true

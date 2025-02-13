@@ -1,14 +1,21 @@
-{{- with .Site.RegularPages }}
-[
-  {{- range $index, $page := . -}}
-    {{- if $index }},{{ end }}
-    {
-      "title": {{ $page.Title | jsonify }},
-      "url": {{ $page.Permalink | jsonify }},
-      "date": {{ $page.Date | time.Format "2006-01-02" | jsonify }},
-      "excerpt": {{ $page.Params.excerpt | default $page.Summary | jsonify }},
-      "description": {{ $page.Params.description | default $page.Summary | jsonify }}
-    }
-  {{- end }}
-]
+{{- with site.RegularPages }}
+{
+  "version": "https://jsonfeed.org/version/1",
+  "title": {{ site.Title | jsonify }},
+  "home_page_url": {{ site.BaseURL | jsonify }},
+  "feed_url": {{ printf "%s/feed.json" site.BaseURL | jsonify }},
+  "items": [
+    {{- range $index, $page := . -}}
+      {{- if $index }},{{ end }}
+      {
+        "id": {{ $page.Permalink | jsonify }},
+        "url": {{ $page.Permalink | jsonify }},
+        "title": {{ $page.Title | jsonify }},
+        "date_published": {{ $page.Date | time.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+        "summary": {{ $page.Params.excerpt | default $page.Summary | jsonify }},
+        "content_text": {{ $page.Plain | jsonify }}
+      }
+    {{- end }}
+  ]
+}
 {{- end }}

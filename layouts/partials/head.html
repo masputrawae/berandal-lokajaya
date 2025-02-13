@@ -23,13 +23,13 @@
 <meta name="twitter:description" content="{{ .Description }}">
 <meta name="twitter:image" content="{{ .Params.thumbnail }}">
 
-<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ "index.xml" | relURL }}">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ "/index.xml" | relURL }}">
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}"> 
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}">
+<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
+<link rel="manifest" href="{{ "manifest.json" | relURL }}">
 
 <!-- (( CSS )) -->
 {{- with resources.Get "sass/main.scss" }}

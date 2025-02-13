@@ -7,7 +7,7 @@
           aria-label="Go to {{ .social }}"
           title="Go to {{ .social }}"
           class="list__link" 
-          href="{{ .url }}" 
+          href="{{ .url | relURL }}" 
           target="_blank" 
           rel="noopener">
             <i class="bi {{ .icon }}"></i>
